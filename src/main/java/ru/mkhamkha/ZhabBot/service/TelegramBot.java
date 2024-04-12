@@ -1,4 +1,4 @@
-package ru.mkhamkha.ZhabBot.Service;
+package ru.mkhamkha.ZhabBot.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -10,9 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.mkhamkha.ZhabBot.config.BotConfig;
-import ru.mkhamkha.ZhabBot.model.User;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,15 +64,9 @@ public class TelegramBot extends TelegramLongPollingBot {
             switch (message) {
                 case "/start" -> {
                     startCommand(chatId, update.getMessage().getChat().getFirstName());
-                    log.info("Ответили пользователю: " + update.getMessage().getChat().getFirstName());
+                    log.info("Ответили пользователю: {}.", update.getMessage().getChat().getFirstName());
 
-                    User user = User.builder()
-                            .id(chatId)
-                            .name(update.getMessage().getChat().getFirstName())
-                            .family(update.getMessage().getChat().getLastName())
-                            .create(LocalDateTime.now())
-                            .build();
-                    userService.addUser(user);
+                    userService.addUser(update);
                 }
                 case "/description" -> {
                     String description = "ЖаБЪ царь болот и ему все обязаны.";

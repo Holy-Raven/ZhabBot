@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.mkhamkha.ZhabBot.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
 }

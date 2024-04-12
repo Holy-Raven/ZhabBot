@@ -5,17 +5,14 @@ spring:
   application:
     name: ZhabBot
   liquibase:
-    enabled: false
+    enabled: true
     change-log: db-migration/liquidbase-master.xml
+    default-schema: public
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/zhab_bot_db
     username: dany
     password: dany
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: none
 
 bot:
   name: t.me/zhab_bot
