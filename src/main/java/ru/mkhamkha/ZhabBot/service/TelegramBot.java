@@ -10,6 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.mkhamkha.ZhabBot.config.BotConfig;
+import ru.mkhamkha.ZhabBot.model.Follower;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +20,12 @@ import java.util.List;
 public class TelegramBot extends TelegramLongPollingBot {
 
     private final BotConfig config;
-    private final UserService userService;
+    private final FollowerService followerService;
 
 
-    public TelegramBot(BotConfig config, UserService userService) {
+    public TelegramBot(BotConfig config, FollowerService userService) {
         this.config = config;
-        this.userService = userService;
+        this.followerService = userService;
 
         List<BotCommand> listOfCommands = new ArrayList<>();
         listOfCommands.add(new BotCommand("/start", "Войти во владение царя болот."));
@@ -66,7 +67,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                     startCommand(chatId, update.getMessage().getChat().getFirstName());
                     log.info("Ответили пользователю: {}.", update.getMessage().getChat().getFirstName());
 
-                    userService.addUser(update);
+                    followerService.addFollower(update);
                 }
                 case "/description" -> {
                     String description = "ЖаБЪ царь болот и ему все обязаны.";
@@ -81,11 +82,29 @@ public class TelegramBot extends TelegramLongPollingBot {
                     sendMessage(chatId, concerts);
                 }
                 case "/mydata" -> {
-                    String mydata = String.format("Знаю что звать тебя - %s, а по батюшке - %s.", update.getMessage().getChat().getFirstName(), update.getMessage().getChat().getLastName());
+
+                    String mydata;
+
+                    if (followerService.findById(chatId).isPresent()) {
+                        Follower follower = followerService.findById(chatId).get();
+                        mydata = String.format("Знаю, что звать тебя - %s, а по батюшке - %s.", follower.getName(), follower.getFamily());
+                    } else {
+                        mydata = "Кажется мы не знакомы, жми /start и давай дружить.";
+                    }
+
                     sendMessage(chatId, mydata);
                 }
                 case "/deldata" -> {
-                    String deldata = "Ха-ха, Нет! Тебе так просто от ЖаБЪ-а не скрыться! Моли о пощаде! ";
+
+                    String deldata;
+
+                    if (followerService.deleteFollowerById(chatId)) {
+                        deldata = "Ой, а кто-это тут у нас? ЖаБЪ таких не знает! \n" +
+                                  "Жми /start, давай знакомиться! ";
+                    } else {
+                        deldata = "ЖаБЪ и так тебя впервые видит! \n" +
+                                  "Жми /start, давай знакомиться! ";
+                    }
                     sendMessage(chatId, deldata);
                 }
                 case "/help" -> {

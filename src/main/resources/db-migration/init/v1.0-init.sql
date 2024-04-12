@@ -1,6 +1,6 @@
 CREATE SCHEMA IF NOT EXISTS zhab;
 
-CREATE TABLE zhab.users
+CREATE TABLE zhab.follower
 (
     id          BIGINT PRIMARY KEY,
     name        VARCHAR(255) NOT NULL,

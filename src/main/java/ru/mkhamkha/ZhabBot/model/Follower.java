@@ -9,12 +9,12 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users", schema = "zhab")
+@Table(name = "follower", schema = "zhab")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Follower {
 
     @Id
     @Column(name = "id")
