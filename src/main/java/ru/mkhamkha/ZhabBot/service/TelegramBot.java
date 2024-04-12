@@ -1,6 +1,6 @@
 package ru.mkhamkha.ZhabBot.service;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
@@ -15,7 +15,7 @@ import ru.mkhamkha.ZhabBot.model.Follower;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
+@Log4j
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
 
@@ -65,7 +65,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             switch (message) {
                 case "/start" -> {
                     startCommand(chatId, update.getMessage().getChat().getFirstName());
-                    log.info("Ответили пользователю: {}.", update.getMessage().getChat().getFirstName());
+                    log.info("Ответили пользователю: " + update.getMessage().getChat().getFirstName());
 
                     followerService.addFollower(update);
                 }

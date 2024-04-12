@@ -1,7 +1,7 @@
 package ru.mkhamkha.ZhabBot.config;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -10,12 +10,12 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import ru.mkhamkha.ZhabBot.service.TelegramBot;
 
-@Slf4j
+@Log4j
 @Component
+@RequiredArgsConstructor
 public class BotInitializer {
 
-    @Autowired
-    TelegramBot bot;
+    private final TelegramBot bot;
 
     @EventListener({ContextRefreshedEvent.class})
     public void init() throws TelegramApiException {

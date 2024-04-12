@@ -2,7 +2,7 @@ package ru.mkhamkha.ZhabBot.service.impl;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.mkhamkha.ZhabBot.service.FollowerService;
@@ -12,7 +12,7 @@ import ru.mkhamkha.ZhabBot.repository.FollowerRepository;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-@Slf4j
+@Log4j
 @Service
 @RequiredArgsConstructor
 public class FollowerServiceImpl implements FollowerService {
@@ -34,7 +34,7 @@ public class FollowerServiceImpl implements FollowerService {
                     .build();
 
             followerRepository.save(user);
-            log.info("Последовавтель {} добавлен в базу: ", update.getMessage().getChat().getFirstName());
+            log.info("Последователь {} добавлен в базу: " + update.getMessage().getChat().getFirstName());
 
         }
     }
