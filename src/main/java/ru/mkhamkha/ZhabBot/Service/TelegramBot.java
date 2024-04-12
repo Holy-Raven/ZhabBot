@@ -10,7 +10,9 @@ import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.mkhamkha.ZhabBot.config.BotConfig;
+import ru.mkhamkha.ZhabBot.model.User;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +21,13 @@ import java.util.List;
 public class TelegramBot extends TelegramLongPollingBot {
 
     private final BotConfig config;
+    private final UserService userService;
 
-    public TelegramBot(BotConfig config) {
+
+    public TelegramBot(BotConfig config, UserService userService) {
         this.config = config;
+        this.userService = userService;
+
         List<BotCommand> listOfCommands = new ArrayList<>();
         listOfCommands.add(new BotCommand("/start", "Войти во владение царя болот."));
         listOfCommands.add(new BotCommand("/description", "Кто такой этот ваш ЖаБЪ?!"));
@@ -58,39 +64,47 @@ public class TelegramBot extends TelegramLongPollingBot {
             long chatId = update.getMessage().getChatId();
 
             switch (message) {
-                case "/start":
+                case "/start" -> {
                     startCommand(chatId, update.getMessage().getChat().getFirstName());
                     log.info("Ответили пользователю: " + update.getMessage().getChat().getFirstName());
-                    break;
-                case "/description":
+
+                    User user = User.builder()
+                            .id(chatId)
+                            .name(update.getMessage().getChat().getFirstName())
+                            .family(update.getMessage().getChat().getLastName())
+                            .create(LocalDateTime.now())
+                            .build();
+                    userService.addUser(user);
+                }
+                case "/description" -> {
                     String description = "ЖаБЪ царь болот и ему все обязаны.";
                     sendMessage(chatId, description);
-                    break;
-                case "/news":
+                }
+                case "/news" -> {
                     String news = "Живем потихонечку.";
                     sendMessage(chatId, news);
-                    break;
-                case "/concerts":
-                    String concerts = "Скоро затусим с байкерами на Nord-Feste";
+                }
+                case "/concerts" -> {
+                    String concerts = "Скоро затусим с байкерами - 22 июня в 21:00 на Nord-Feste";
                     sendMessage(chatId, concerts);
-                    break;
-                case "/mydata":
+                }
+                case "/mydata" -> {
                     String mydata = String.format("Знаю что звать тебя - %s, а по батюшке - %s.", update.getMessage().getChat().getFirstName(), update.getMessage().getChat().getLastName());
                     sendMessage(chatId, mydata);
-                    break;
-                case "/deldata":
+                }
+                case "/deldata" -> {
                     String deldata = "Ха-ха, Нет! Тебе так просто от ЖаБЪ-а не скрыться! Моли о пощаде! ";
                     sendMessage(chatId, deldata);
-                    break;
-                case "/help":
+                }
+                case "/help" -> {
                     String help = "Бог поможет.";
                     sendMessage(chatId, help);
-                    break;
-                case "/settings":
+                }
+                case "/settings" -> {
                     String settings = "Мы все уже настроили, иди лучше пивка бахни!";
                     sendMessage(chatId, settings);
-                    break;
-                default: sendMessage(chatId, "Извини, моя твоя не понимать, приходи потом)");
+                }
+                default -> sendMessage(chatId, "Извини, моя твоя не понимать, приходи потом)");
             }
         }
     }
