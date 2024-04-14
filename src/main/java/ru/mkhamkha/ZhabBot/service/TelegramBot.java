@@ -1,5 +1,6 @@
 package ru.mkhamkha.ZhabBot.service;
 
+import com.vdurmont.emoji.EmojiParser;
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -15,6 +16,8 @@ import ru.mkhamkha.ZhabBot.model.Follower;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ru.mkhamkha.ZhabBot.util.Constants.*;
+
 @Log4j
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
@@ -28,14 +31,14 @@ public class TelegramBot extends TelegramLongPollingBot {
         this.followerService = userService;
 
         List<BotCommand> listOfCommands = new ArrayList<>();
-        listOfCommands.add(new BotCommand("/start", "Войти во владение царя болот."));
-        listOfCommands.add(new BotCommand("/description", "Кто такой этот ваш ЖаБЪ?!"));
-        listOfCommands.add(new BotCommand("/news", "Свежие новости с болот."));
-        listOfCommands.add(new BotCommand("/concerts", "Ближайшие концерты."));
-        listOfCommands.add(new BotCommand("/mydata", "Что ЖаБЪ о тебе знает."));
-        listOfCommands.add(new BotCommand("/deldata", "Чпоньк, и ЖаБЪ забудет о тебе."));
-        listOfCommands.add(new BotCommand("/help", "Нужна помощь?."));
-        listOfCommands.add(new BotCommand("/settings", "Можно настроить и станет чутка получше."));
+        listOfCommands.add(new BotCommand("/start", START));
+        listOfCommands.add(new BotCommand("/description", DESCRIPTION));
+        listOfCommands.add(new BotCommand("/news", NEWS));
+        listOfCommands.add(new BotCommand("/concerts", CONCERTS));
+        listOfCommands.add(new BotCommand("/mydata", MY_DATA));
+        listOfCommands.add(new BotCommand("/deldata", DELETE_DATA));
+        listOfCommands.add(new BotCommand("/help", HELP));
+        listOfCommands.add(new BotCommand("/settings", SETTINGS));
 
         try {
             this.execute(new SetMyCommands(listOfCommands, new BotCommandScopeDefault(), null));
@@ -122,7 +125,8 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private void startCommand(long chatId, String name) {
 
-        String answer = String.format("Привет %s, ЖаБЪ тебя скушает! Но не сегодня, живи пока что!", name);
+        //кодировка смайлов взята с https://emojisup.org
+        String answer = EmojiParser.parseToUnicode("Привет, " + name + " ЖаБЪ тебя скушает! Но не сегодня, живи пока что!" + " :blush:");
         sendMessage(chatId, answer);
     }
 
