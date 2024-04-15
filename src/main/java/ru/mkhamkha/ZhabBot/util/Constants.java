@@ -11,7 +11,6 @@ public class Constants {
     public static final String MY_DATA = "Что ЖаБЪ о тебе знает.";
     public static final String DELETE_DATA = "Попрощаться с ЖаБЪ-ом";
     public static final String HELP = "Нужна помощь?";
-    public static final String SETTINGS = "Можно настроить и станет чутка получше.";
-
+    public static final String MARKET = "Болотная барахолка";
 
 }

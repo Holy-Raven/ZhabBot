@@ -9,6 +9,8 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.mkhamkha.ZhabBot.config.BotConfig;
 import ru.mkhamkha.ZhabBot.model.Follower;
@@ -38,7 +40,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         listOfCommands.add(new BotCommand("/mydata", MY_DATA));
         listOfCommands.add(new BotCommand("/deldata", DELETE_DATA));
         listOfCommands.add(new BotCommand("/help", HELP));
-        listOfCommands.add(new BotCommand("/settings", SETTINGS));
+        listOfCommands.add(new BotCommand("/market", MARKET));
 
         try {
             this.execute(new SetMyCommands(listOfCommands, new BotCommandScopeDefault(), null));
@@ -84,6 +86,10 @@ public class TelegramBot extends TelegramLongPollingBot {
                     String concerts = "Скоро затусим с байкерами - 22 июня в 21:00 на Nord-Feste";
                     sendMessage(chatId, concerts);
                 }
+                case "/market" -> {
+                    String settings = "Продаем всякое. Присморись, у нас точно есть то что ты ищешь!";
+                    sendMessage(chatId, settings);
+                }
                 case "/mydata" -> {
 
                     String mydata;
@@ -114,10 +120,6 @@ public class TelegramBot extends TelegramLongPollingBot {
                     String help = "Бог поможет.";
                     sendMessage(chatId, help);
                 }
-                case "/settings" -> {
-                    String settings = "Мы все уже настроили, иди лучше пивка бахни!";
-                    sendMessage(chatId, settings);
-                }
                 default -> sendMessage(chatId, "Извини, моя твоя не понимать, приходи потом)");
             }
         }
@@ -130,10 +132,37 @@ public class TelegramBot extends TelegramLongPollingBot {
         sendMessage(chatId, answer);
     }
 
+    //интерактивная клавиатура
+    private void keyboard(SendMessage message) {
+        ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
+        List<KeyboardRow> keyboardRows = new ArrayList<>();
+
+        KeyboardRow row;
+
+        row = new KeyboardRow();
+        row.add("/news");
+        row.add("/description");
+        row.add("/concerts");
+        row.add("/market");
+        keyboardRows.add(row);
+
+        row = new KeyboardRow();
+        row.add("/help");
+        row.add("/mydata");
+        row.add("/deldata");
+
+        keyboardRows.add(row);
+
+        keyboardMarkup.setKeyboard(keyboardRows);
+        message.setReplyMarkup(keyboardMarkup);
+    }
+
     private void sendMessage(long chatId, String sendMessage) {
         SendMessage message = new SendMessage();
         message.setChatId(String.valueOf(chatId));
         message.setText(sendMessage);
+
+        keyboard(message);
 
         try {
             execute(message);
