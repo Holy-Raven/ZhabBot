@@ -1,4 +1,4 @@
-package ru.mkhamkha.ZhabBot.model;
+package ru.mkhamkha.ZhabBot.entity.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
