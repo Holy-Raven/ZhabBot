@@ -1,5 +1,6 @@
 package ru.mkhamkha.ZhabBot.controller;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
@@ -48,6 +49,39 @@ public class NewsController {
 
         log.info("GET request: /zhabalaka/admin/news/" + newsId);
         return newsMapper.toDTO(newsService.findById(newsId));
+    }
+
+    @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public News addNews(@Valid @RequestBody NewsDTO newsDTO) {
+
+        log.info("POST request: /zhabalaka/admin/news");
+        return newsService.addNews(newsMapper.toEntity(newsDTO));
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public News updateNews(@RequestBody NewsDTO newsDTO,
+                           @PathVariable("id") Long newsId) {
+
+        log.info("PUT request: /zhabalaka/admin/news/" + newsId);
+        return newsService.updateNews(newsId, newsDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable("id") Long newsId) {
+
+        log.info("DEL request: /zhabalaka/admin/news/" + newsId);
+        newsService.deleteNewsById(newsId);
+    }
+
+    @DeleteMapping
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deleteAll() {
+
+        log.info("DEL request: /zhabalaka/admin/news");
+        newsService.deleteAll();
     }
 }
 
