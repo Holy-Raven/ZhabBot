@@ -5,13 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 import static ru.mkhamkha.ZhabBot.util.Constants.DATE_FORMAT;
 
-@Getter
 public record NewsDTO (
 
         @JsonProperty(value = "id", access = JsonProperty.Access.READ_ONLY)

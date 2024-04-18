@@ -2,7 +2,6 @@ package ru.mkhamkha.ZhabBot.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import ru.mkhamkha.ZhabBot.model.dto.NewsDTO;
 import ru.mkhamkha.ZhabBot.model.entity.News;
 
 public interface NewsService {
@@ -13,7 +12,7 @@ public interface NewsService {
 
     News addNews(News news);
 
-    News updateNews(Long newsId, NewsDTO newsDTO);
+    News updateNews(Long newsId, News news);
 
     void deleteNewsById(Long newsId);
 

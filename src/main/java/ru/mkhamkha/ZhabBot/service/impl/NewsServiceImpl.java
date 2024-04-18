@@ -6,7 +6,6 @@ import lombok.extern.log4j.Log4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ru.mkhamkha.ZhabBot.model.dto.NewsDTO;
 import ru.mkhamkha.ZhabBot.util.exception.ConflictException;
 import ru.mkhamkha.ZhabBot.util.exception.NotFoundException;
 import ru.mkhamkha.ZhabBot.model.entity.News;
@@ -41,16 +40,16 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public News updateNews(Long newsId, NewsDTO newsDTO) {
+    public News updateNews(Long newsId, News news) {
 
         News updatedNews = findById(newsId);
 
-        if (newsDTO.getTitle() != null)
-            updatedNews.setTitle(newsDTO.getTitle());
-        if (newsDTO.getMessage() != null)
-            updatedNews.setMessage(newsDTO.getMessage());
-        if (newsDTO.getTime() != null)
-            updatedNews.setTime(newsDTO.getTime());
+        if (news.getTitle() != null)
+            updatedNews.setTitle(news.getTitle());
+        if (news.getMessage() != null)
+            updatedNews.setMessage(news.getMessage());
+        if (news.getTime() != null)
+            updatedNews.setTime(news.getTime());
 
         return newsRepository.save(updatedNews);
     }

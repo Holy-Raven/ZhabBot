@@ -28,10 +28,13 @@ public class TelegramBot extends TelegramLongPollingBot {
     private final BotConfig config;
     private final FollowerService followerService;
 
+    private final MenuService menuService;
 
-    public TelegramBot(BotConfig config, FollowerService userService) {
+
+    public TelegramBot(BotConfig config, FollowerService userService, MenuService menuService) {
         this.config = config;
         this.followerService = userService;
+        this.menuService = menuService;
 
         List<BotCommand> listOfCommands = new ArrayList<>();
         listOfCommands.add(new BotCommand("/start", START));
@@ -71,16 +74,14 @@ public class TelegramBot extends TelegramLongPollingBot {
             switch (message) {
                 case "/start" -> {
                     startCommand(chatId, update.getMessage().getChat().getFirstName());
-                    log.info("Ответили пользователю: " + update.getMessage().getChat().getFirstName());
-
                     followerService.addFollower(update);
                 }
                 case "/description" -> {
-                    String description = "ЖаБЪ царь болот и ему все обязаны.";
+                    String description = menuService.descriptionAnswer();
                     sendMessage(chatId, description);
                 }
                 case "/news" -> {
-                    String news = "Живем потихонечку.";
+                    String news = menuService.newsAnswer(5);
                     sendMessage(chatId, news);
                 }
                 case "/concerts" -> {

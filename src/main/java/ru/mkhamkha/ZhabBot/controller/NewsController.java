@@ -53,19 +53,19 @@ public class NewsController {
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public News addNews(@Valid @RequestBody NewsDTO newsDTO) {
+    public NewsDTO addNews(@Valid @RequestBody NewsDTO newsDTO) {
 
         log.info("POST request: /zhabalaka/admin/news");
-        return newsService.addNews(newsMapper.toEntity(newsDTO));
+        return newsMapper.toDTO(newsService.addNews(newsMapper.toEntity(newsDTO)));
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public News updateNews(@RequestBody NewsDTO newsDTO,
+    public NewsDTO updateNews(@RequestBody NewsDTO newsDTO,
                            @PathVariable("id") Long newsId) {
 
         log.info("PUT request: /zhabalaka/admin/news/" + newsId);
-        return newsService.updateNews(newsId, newsDTO);
+        return newsMapper.toDTO(newsService.updateNews(newsId, newsMapper.toEntity(newsDTO)));
     }
 
     @DeleteMapping("/{id}")
