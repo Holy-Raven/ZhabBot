@@ -16,6 +16,11 @@ public record NewsDTO (
         Long id,
 
         @NotBlank
+        @Size(max = 250)
+        @JsonProperty(value = "title")
+        String title,
+
+        @NotBlank
         @Size(max = 2000)
         @JsonProperty(value = "message")
         String message,
