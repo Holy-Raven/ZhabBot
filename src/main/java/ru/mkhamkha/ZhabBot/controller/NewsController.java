@@ -62,7 +62,7 @@ public class NewsController {
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.CREATED)
     public NewsDTO updateNews(@RequestBody NewsDTO newsDTO,
-                           @PathVariable("id") Long newsId) {
+                              @PathVariable("id") Long newsId) {
 
         log.info("PUT request: /zhabalaka/admin/news/" + newsId);
         return newsMapper.toDTO(newsService.updateNews(newsId, newsMapper.toEntity(newsDTO)));

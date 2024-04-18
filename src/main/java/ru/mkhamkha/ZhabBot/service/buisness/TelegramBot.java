@@ -1,6 +1,5 @@
 package ru.mkhamkha.ZhabBot.service.buisness;
 
-import com.vdurmont.emoji.EmojiParser;
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -27,7 +26,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private final BotConfig config;
     private final FollowerService followerService;
-
     private final MenuService menuService;
 
 
@@ -73,7 +71,10 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             switch (message) {
                 case "/start" -> {
-                    startCommand(chatId, update.getMessage().getChat().getFirstName());
+
+                    String answer = menuService.startAnswer(update.getMessage().getChat().getFirstName());
+                    sendMessage(chatId, answer);
+
                     followerService.addFollower(update);
                 }
                 case "/description" -> {
@@ -127,12 +128,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
-    private void startCommand(long chatId, String name) {
 
-        //кодировка смайлов взята с https://emojisup.org
-        String answer = EmojiParser.parseToUnicode("Привет, " + name + " ЖаБЪ тебя скушает! Но не сегодня, живи пока что!" + " :blush:");
-        sendMessage(chatId, answer);
-    }
 
     //интерактивная клавиатура
     private void keyboard(SendMessage message) {

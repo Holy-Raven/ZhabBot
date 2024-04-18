@@ -1,5 +1,6 @@
 package ru.mkhamkha.ZhabBot.service.buisness;
 
+import com.vdurmont.emoji.EmojiParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +12,19 @@ import static ru.mkhamkha.ZhabBot.util.Constants.DATE_FORMAT;
 @RequiredArgsConstructor
 public class MenuService {
 
-    private final NewsAnswerService newsAnswerService;
+    private final AnswerNewsService answerNewsService;
+
+    public String startAnswer(String name) {
+
+        //кодировка смайлов взята с https://emojisup.org
+        return EmojiParser.parseToUnicode("Привет, " + name + " ЖаБЪ тебя скушает! Но не сегодня, живи пока что!" + " :blush:");
+    }
 
     public String newsAnswer(Integer top) {
 
         StringBuilder builder = new StringBuilder();
 
-        newsAnswerService.topNews(top).forEach(message ->
+        answerNewsService.topNews(top).forEach(message ->
         {
             builder.append(message.getTitle());
             builder.append(" - (" + message.getTime().format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + ")");

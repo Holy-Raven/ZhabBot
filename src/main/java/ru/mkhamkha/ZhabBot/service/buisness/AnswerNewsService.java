@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class NewsAnswerService {
+public class AnswerNewsService {
 
     private final NewsService service;
     private final EntityManager entityManager;
