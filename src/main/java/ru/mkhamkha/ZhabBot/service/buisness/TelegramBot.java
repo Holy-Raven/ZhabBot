@@ -1,4 +1,4 @@
-package ru.mkhamkha.ZhabBot.service;
+package ru.mkhamkha.ZhabBot.service.buisness;
 
 import com.vdurmont.emoji.EmojiParser;
 import lombok.extern.log4j.Log4j;
@@ -13,7 +13,8 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.mkhamkha.ZhabBot.config.BotConfig;
-import ru.mkhamkha.ZhabBot.model.Follower;
+import ru.mkhamkha.ZhabBot.model.entity.Follower;
+import ru.mkhamkha.ZhabBot.service.FollowerService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +28,13 @@ public class TelegramBot extends TelegramLongPollingBot {
     private final BotConfig config;
     private final FollowerService followerService;
 
+    private final MenuService menuService;
 
-    public TelegramBot(BotConfig config, FollowerService userService) {
+
+    public TelegramBot(BotConfig config, FollowerService userService, MenuService menuService) {
         this.config = config;
         this.followerService = userService;
+        this.menuService = menuService;
 
         List<BotCommand> listOfCommands = new ArrayList<>();
         listOfCommands.add(new BotCommand("/start", START));
@@ -70,16 +74,14 @@ public class TelegramBot extends TelegramLongPollingBot {
             switch (message) {
                 case "/start" -> {
                     startCommand(chatId, update.getMessage().getChat().getFirstName());
-                    log.info("Ответили пользователю: " + update.getMessage().getChat().getFirstName());
-
                     followerService.addFollower(update);
                 }
                 case "/description" -> {
-                    String description = "ЖаБЪ царь болот и ему все обязаны.";
+                    String description = menuService.descriptionAnswer();
                     sendMessage(chatId, description);
                 }
                 case "/news" -> {
-                    String news = "Живем потихонечку.";
+                    String news = menuService.newsAnswer(5);
                     sendMessage(chatId, news);
                 }
                 case "/concerts" -> {
@@ -141,7 +143,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         row = new KeyboardRow();
         row.add("/news");
-        row.add("/description");
         row.add("/concerts");
         row.add("/market");
         keyboardRows.add(row);

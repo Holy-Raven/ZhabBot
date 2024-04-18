@@ -6,7 +6,7 @@ import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.mkhamkha.ZhabBot.service.FollowerService;
-import ru.mkhamkha.ZhabBot.model.Follower;
+import ru.mkhamkha.ZhabBot.model.entity.Follower;
 import ru.mkhamkha.ZhabBot.repository.FollowerRepository;
 
 import java.time.LocalDateTime;
