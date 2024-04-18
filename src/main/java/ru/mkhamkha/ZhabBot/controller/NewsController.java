@@ -8,9 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.mkhamkha.ZhabBot.entity.model.News;
-import ru.mkhamkha.ZhabBot.entity.dto.NewsDTO;
-import ru.mkhamkha.ZhabBot.entity.mapper.NewsMapper;
+import ru.mkhamkha.ZhabBot.model.entity.News;
+import ru.mkhamkha.ZhabBot.model.dto.NewsDTO;
+import ru.mkhamkha.ZhabBot.model.mapper.NewsMapper;
 import ru.mkhamkha.ZhabBot.service.NewsService;
 
 import java.util.List;

@@ -1,9 +1,6 @@
-package ru.mkhamkha.ZhabBot.entity.model;
+package ru.mkhamkha.ZhabBot.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -29,4 +26,10 @@ public class Follower {
     @Column(name = "create_time")
     private LocalDateTime create;
 
+    @PrePersist
+    void prePersist() {
+        if (this.create == null) {
+            this.create = LocalDateTime.now();
+        }
+    }
 }

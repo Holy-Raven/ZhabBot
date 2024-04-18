@@ -1,4 +1,4 @@
-package ru.mkhamkha.ZhabBot.entity.dto;
+package ru.mkhamkha.ZhabBot.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

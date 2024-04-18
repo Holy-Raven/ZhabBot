@@ -13,7 +13,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.mkhamkha.ZhabBot.config.BotConfig;
-import ru.mkhamkha.ZhabBot.entity.model.Follower;
+import ru.mkhamkha.ZhabBot.model.entity.Follower;
 import ru.mkhamkha.ZhabBot.service.FollowerService;
 
 import java.util.ArrayList;

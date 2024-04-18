@@ -1,8 +1,8 @@
-package ru.mkhamkha.ZhabBot.entity.mapper;
+package ru.mkhamkha.ZhabBot.model.mapper;
 
 import org.mapstruct.Mapper;
-import ru.mkhamkha.ZhabBot.entity.model.News;
-import ru.mkhamkha.ZhabBot.entity.dto.NewsDTO;
+import ru.mkhamkha.ZhabBot.model.entity.News;
+import ru.mkhamkha.ZhabBot.model.dto.NewsDTO;
 
 @Mapper(componentModel = "spring")
 public interface NewsMapper {

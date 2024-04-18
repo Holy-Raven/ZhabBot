@@ -2,7 +2,7 @@ package ru.mkhamkha.ZhabBot.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import ru.mkhamkha.ZhabBot.entity.model.News;
+import ru.mkhamkha.ZhabBot.model.entity.News;
 
 public interface NewsService {
 

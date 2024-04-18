@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.mkhamkha.ZhabBot.util.exception.NotFoundException;
-import ru.mkhamkha.ZhabBot.entity.model.News;
+import ru.mkhamkha.ZhabBot.model.entity.News;
 import ru.mkhamkha.ZhabBot.repository.NewsRepository;
 import ru.mkhamkha.ZhabBot.service.NewsService;
 
