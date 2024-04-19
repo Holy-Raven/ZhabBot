@@ -3,8 +3,10 @@ package ru.mkhamkha.ZhabBot.service.buisness;
 import com.vdurmont.emoji.EmojiParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.mkhamkha.ZhabBot.model.entity.News;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import static ru.mkhamkha.ZhabBot.util.Constants.DATE_FORMAT;
 
@@ -22,23 +24,28 @@ public class MenuService {
 
     public String newsAnswer(Integer top) {
 
-        StringBuilder builder = new StringBuilder();
+        List<News> news = answerNewsService.topNews(top);
 
-        answerNewsService.topNews(top).forEach(message ->
-        {
-            builder.append(message.getTitle());
-            builder.append(" - (" + message.getTime().format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + ")");
-            builder.append("\n\n");
-            builder.append(message.getMessage());
-            builder.append("\n\n");
-        });
+        if (!news.isEmpty()) {
+            StringBuilder builder = new StringBuilder();
+            news.forEach(message ->
+            {
+                builder.append(message.getTitle());
+                builder.append(" - (" + message.getTime().format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + ")");
+                builder.append("\n\n");
+                builder.append(message.getMessage());
+                builder.append("\n\n");
+            });
 
-        return builder.toString();
+            return builder.toString();
+        } else {
+            return "А новостей то и нет, все тихо спокойно.";
+        }
     }
 
     public String descriptionAnswer() {
 
-        return  "Вы спрашиваете нас, ЧТО такое ЖаБЪ?!" +
+        return "Вы спрашиваете нас, ЧТО такое ЖаБЪ?!" +
                 "\n\n" +
                 "ЖаБЪ — это музыка, которую невозможно вместить в узкие рамки одного стиля. Это целая вселенная, " +
                 "где эпичный викинг-метал органично сочетается с заводными народными мотивами, мощные гитарные риффы " +

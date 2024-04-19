@@ -22,10 +22,10 @@ public class News {
     private Long id;
 
     @Column(name = "title")
-    private  String title;
+    private String title;
 
     @Column(name = "message")
-    private  String message;
+    private String message;
 
     @Column(name = "create_time")
     private LocalDateTime time;

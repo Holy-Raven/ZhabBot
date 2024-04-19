@@ -1,13 +1,29 @@
 package ru.mkhamkha.ZhabBot.model.mapper;
 
-import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
 import ru.mkhamkha.ZhabBot.model.entity.News;
 import ru.mkhamkha.ZhabBot.model.dto.NewsDTO;
 
-@Mapper(componentModel = "spring")
-public interface NewsMapper {
+@Component
+public class NewsMapper {
 
-    News toEntity(NewsDTO newsDTO);
+    public News toEntity(NewsDTO newsDTO) {
 
-    NewsDTO toDTO(News news);
+        return News.builder()
+                .id(newsDTO.getId())
+                .title(newsDTO.getTitle())
+                .message(newsDTO.getMessage())
+                .time(newsDTO.getTime())
+                .build();
+    }
+
+    public NewsDTO toDTO(News news) {
+
+        return NewsDTO.builder()
+                .id(news.getId())
+                .title(news.getTitle())
+                .message(news.getMessage())
+                .time(news.getTime())
+                .build();
+    }
 }

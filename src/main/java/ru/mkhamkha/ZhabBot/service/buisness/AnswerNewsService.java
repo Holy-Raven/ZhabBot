@@ -18,7 +18,7 @@ public class AnswerNewsService {
 
     public List<News> topNews(Integer top) {
 
-        String query = "select * from zhab.news order by create_time limit :limit";
+        String query = "select * from zhab.news order by create_time desc limit :limit";
         Query nativeQuery = entityManager.createNativeQuery(query, News.class);
         nativeQuery.setParameter("limit", top);
 

@@ -14,9 +14,6 @@ import ru.mkhamkha.ZhabBot.model.dto.NewsDTO;
 import ru.mkhamkha.ZhabBot.model.mapper.NewsMapper;
 import ru.mkhamkha.ZhabBot.service.NewsService;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static ru.mkhamkha.ZhabBot.util.Constants.FROM_ERROR_MESSAGE;
 import static ru.mkhamkha.ZhabBot.util.Constants.SIZE_ERROR_MESSAGE;
 
@@ -31,16 +28,16 @@ public class NewsController {
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
-    public List<NewsDTO> findAllNews(@PositiveOrZero(message = FROM_ERROR_MESSAGE)
+    public Page<NewsDTO> findAllNews(@PositiveOrZero(message = FROM_ERROR_MESSAGE)
                                      @RequestParam(defaultValue = "0") Integer from,
                                      @Positive(message = SIZE_ERROR_MESSAGE)
-                                     @RequestParam(defaultValue = "100") Integer size) {
+                                     @RequestParam(defaultValue = "10") Integer size) {
 
         PageRequest page = PageRequest.of(from, size);
         Page<News> news = newsService.findAllNews(page);
 
         log.info("GET request: /zhabalaka/admin/news");
-        return news.stream().map(newsMapper::toDTO).collect(Collectors.toList());
+        return news.map(newsMapper::toDTO);
     }
 
     @GetMapping("/{id}")

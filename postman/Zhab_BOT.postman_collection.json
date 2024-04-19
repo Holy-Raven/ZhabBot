@@ -1,0 +1,268 @@
+{
+	"info": {
+		"_postman_id": "9d996b9a-c88e-4c15-8a6c-db47f5395f18",
+		"name": "Zhab_BOT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26423159"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "crud news",
+					"item": [
+						{
+							"name": "ALL_NEWS",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRcE10Um92NzBPMklNNnJnYTNNSEFWQlNMbFZRLVhaVjdHSlB4ME9CYk9BIn0.eyJleHAiOjE3MDUzMjY1ODIsImlhdCI6MTcwNTMyNDc4MiwianRpIjoiZjY0YjU4ZmItNWI5Mi00NzlkLTk2NjItMDczMjY5YzFhYTFmIiwiaXNzIjoiaHR0cHM6Ly9kZXYtYXV0aC1hZG1pbi5tZWRpYXNjb3BlLm5ldC9hdXRoL3JlYWxtcy9JRFMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiOWY0NDZhNjQtNDIxYy00MjhiLWE5ZjAtNGZjODljYmQ0NmU4IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiY29udHJvbC1ldmVudC1zZXJ2aWNlLW1pY3Jvc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiI0NDY1OGZhZi0wMTU3LTRkMWEtOGY3MC00NWY4NGQ5ZGZlMjMiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImxrLXVzZXIiLCJjZXMtcm1zLXVzZXIiLCJjZXMtc2MtdXNlciIsIm9mZmxpbmVfYWNjZXNzIiwiY2VzLWlscC11c2VyIiwiY2VzLXRlc3QiLCJjZXMtYWRtaW4iLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjQ0NjU4ZmFmLTAxNTctNGQxYS04ZjcwLTQ1Zjg0ZDlkZmUyMyIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiY2VzLWFkbWluIn0.W0CbBzwJuy-vgThm59wyYVMoGHI8ruLHdIj1Y15c2mgA54KYCBr_ARARWYganJi6K0-ySTlizc0ApDzdVLgwG819pHxyu8X5431bOblhhKajsKP8A_9vgcu0PPloQERc1ckbYH2BE9jctPfuv8AO41J0gqqP2JAx814DIVDsGdqNC_cgPH6G0umR8ljXDe7QFdsAG5VCBxkjUR8YcJuse5g1ZaeRMWg-00lBI4J0ZApqmn2hGUcLm3JR-AzDY8Mb0TNJEk68oGo_LJxGMWwLYbecjL7kN6eSxMzh5gXAwJomRSKdnRCJHMmscuD-Opx_1B3GyqNZMszUAB9EUiUvBg",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/zhabalaka/admin/news",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"zhabalaka",
+										"admin",
+										"news"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "0",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "5",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DEL_ALL_NEWS",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRcE10Um92NzBPMklNNnJnYTNNSEFWQlNMbFZRLVhaVjdHSlB4ME9CYk9BIn0.eyJleHAiOjE3MDUzMjY1ODIsImlhdCI6MTcwNTMyNDc4MiwianRpIjoiZjY0YjU4ZmItNWI5Mi00NzlkLTk2NjItMDczMjY5YzFhYTFmIiwiaXNzIjoiaHR0cHM6Ly9kZXYtYXV0aC1hZG1pbi5tZWRpYXNjb3BlLm5ldC9hdXRoL3JlYWxtcy9JRFMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiOWY0NDZhNjQtNDIxYy00MjhiLWE5ZjAtNGZjODljYmQ0NmU4IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiY29udHJvbC1ldmVudC1zZXJ2aWNlLW1pY3Jvc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiI0NDY1OGZhZi0wMTU3LTRkMWEtOGY3MC00NWY4NGQ5ZGZlMjMiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImxrLXVzZXIiLCJjZXMtcm1zLXVzZXIiLCJjZXMtc2MtdXNlciIsIm9mZmxpbmVfYWNjZXNzIiwiY2VzLWlscC11c2VyIiwiY2VzLXRlc3QiLCJjZXMtYWRtaW4iLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjQ0NjU4ZmFmLTAxNTctNGQxYS04ZjcwLTQ1Zjg0ZDlkZmUyMyIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiY2VzLWFkbWluIn0.W0CbBzwJuy-vgThm59wyYVMoGHI8ruLHdIj1Y15c2mgA54KYCBr_ARARWYganJi6K0-ySTlizc0ApDzdVLgwG819pHxyu8X5431bOblhhKajsKP8A_9vgcu0PPloQERc1ckbYH2BE9jctPfuv8AO41J0gqqP2JAx814DIVDsGdqNC_cgPH6G0umR8ljXDe7QFdsAG5VCBxkjUR8YcJuse5g1ZaeRMWg-00lBI4J0ZApqmn2hGUcLm3JR-AzDY8Mb0TNJEk68oGo_LJxGMWwLYbecjL7kN6eSxMzh5gXAwJomRSKdnRCJHMmscuD-Opx_1B3GyqNZMszUAB9EUiUvBg",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/zhabalaka/admin/news",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"zhabalaka",
+										"admin",
+										"news"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "0",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "5",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DEL_NEWS_BY_ID",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRcE10Um92NzBPMklNNnJnYTNNSEFWQlNMbFZRLVhaVjdHSlB4ME9CYk9BIn0.eyJleHAiOjE3MDUzMjY1ODIsImlhdCI6MTcwNTMyNDc4MiwianRpIjoiZjY0YjU4ZmItNWI5Mi00NzlkLTk2NjItMDczMjY5YzFhYTFmIiwiaXNzIjoiaHR0cHM6Ly9kZXYtYXV0aC1hZG1pbi5tZWRpYXNjb3BlLm5ldC9hdXRoL3JlYWxtcy9JRFMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiOWY0NDZhNjQtNDIxYy00MjhiLWE5ZjAtNGZjODljYmQ0NmU4IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiY29udHJvbC1ldmVudC1zZXJ2aWNlLW1pY3Jvc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiI0NDY1OGZhZi0wMTU3LTRkMWEtOGY3MC00NWY4NGQ5ZGZlMjMiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImxrLXVzZXIiLCJjZXMtcm1zLXVzZXIiLCJjZXMtc2MtdXNlciIsIm9mZmxpbmVfYWNjZXNzIiwiY2VzLWlscC11c2VyIiwiY2VzLXRlc3QiLCJjZXMtYWRtaW4iLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjQ0NjU4ZmFmLTAxNTctNGQxYS04ZjcwLTQ1Zjg0ZDlkZmUyMyIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiY2VzLWFkbWluIn0.W0CbBzwJuy-vgThm59wyYVMoGHI8ruLHdIj1Y15c2mgA54KYCBr_ARARWYganJi6K0-ySTlizc0ApDzdVLgwG819pHxyu8X5431bOblhhKajsKP8A_9vgcu0PPloQERc1ckbYH2BE9jctPfuv8AO41J0gqqP2JAx814DIVDsGdqNC_cgPH6G0umR8ljXDe7QFdsAG5VCBxkjUR8YcJuse5g1ZaeRMWg-00lBI4J0ZApqmn2hGUcLm3JR-AzDY8Mb0TNJEk68oGo_LJxGMWwLYbecjL7kN6eSxMzh5gXAwJomRSKdnRCJHMmscuD-Opx_1B3GyqNZMszUAB9EUiUvBg",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/zhabalaka/admin/news/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"zhabalaka",
+										"admin",
+										"news",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "9"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "NEWS_BY_ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRcE10Um92NzBPMklNNnJnYTNNSEFWQlNMbFZRLVhaVjdHSlB4ME9CYk9BIn0.eyJleHAiOjE3MDUzMjY1ODIsImlhdCI6MTcwNTMyNDc4MiwianRpIjoiZjY0YjU4ZmItNWI5Mi00NzlkLTk2NjItMDczMjY5YzFhYTFmIiwiaXNzIjoiaHR0cHM6Ly9kZXYtYXV0aC1hZG1pbi5tZWRpYXNjb3BlLm5ldC9hdXRoL3JlYWxtcy9JRFMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiOWY0NDZhNjQtNDIxYy00MjhiLWE5ZjAtNGZjODljYmQ0NmU4IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiY29udHJvbC1ldmVudC1zZXJ2aWNlLW1pY3Jvc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiI0NDY1OGZhZi0wMTU3LTRkMWEtOGY3MC00NWY4NGQ5ZGZlMjMiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImxrLXVzZXIiLCJjZXMtcm1zLXVzZXIiLCJjZXMtc2MtdXNlciIsIm9mZmxpbmVfYWNjZXNzIiwiY2VzLWlscC11c2VyIiwiY2VzLXRlc3QiLCJjZXMtYWRtaW4iLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjQ0NjU4ZmFmLTAxNTctNGQxYS04ZjcwLTQ1Zjg0ZDlkZmUyMyIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiY2VzLWFkbWluIn0.W0CbBzwJuy-vgThm59wyYVMoGHI8ruLHdIj1Y15c2mgA54KYCBr_ARARWYganJi6K0-ySTlizc0ApDzdVLgwG819pHxyu8X5431bOblhhKajsKP8A_9vgcu0PPloQERc1ckbYH2BE9jctPfuv8AO41J0gqqP2JAx814DIVDsGdqNC_cgPH6G0umR8ljXDe7QFdsAG5VCBxkjUR8YcJuse5g1ZaeRMWg-00lBI4J0ZApqmn2hGUcLm3JR-AzDY8Mb0TNJEk68oGo_LJxGMWwLYbecjL7kN6eSxMzh5gXAwJomRSKdnRCJHMmscuD-Opx_1B3GyqNZMszUAB9EUiUvBg",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/zhabalaka/admin/news/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"zhabalaka",
+										"admin",
+										"news",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "11"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ADD_NEWS",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRcE10Um92NzBPMklNNnJnYTNNSEFWQlNMbFZRLVhaVjdHSlB4ME9CYk9BIn0.eyJleHAiOjE3MDUzMjY1ODIsImlhdCI6MTcwNTMyNDc4MiwianRpIjoiZjY0YjU4ZmItNWI5Mi00NzlkLTk2NjItMDczMjY5YzFhYTFmIiwiaXNzIjoiaHR0cHM6Ly9kZXYtYXV0aC1hZG1pbi5tZWRpYXNjb3BlLm5ldC9hdXRoL3JlYWxtcy9JRFMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiOWY0NDZhNjQtNDIxYy00MjhiLWE5ZjAtNGZjODljYmQ0NmU4IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiY29udHJvbC1ldmVudC1zZXJ2aWNlLW1pY3Jvc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiI0NDY1OGZhZi0wMTU3LTRkMWEtOGY3MC00NWY4NGQ5ZGZlMjMiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImxrLXVzZXIiLCJjZXMtcm1zLXVzZXIiLCJjZXMtc2MtdXNlciIsIm9mZmxpbmVfYWNjZXNzIiwiY2VzLWlscC11c2VyIiwiY2VzLXRlc3QiLCJjZXMtYWRtaW4iLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjQ0NjU4ZmFmLTAxNTctNGQxYS04ZjcwLTQ1Zjg0ZDlkZmUyMyIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiY2VzLWFkbWluIn0.W0CbBzwJuy-vgThm59wyYVMoGHI8ruLHdIj1Y15c2mgA54KYCBr_ARARWYganJi6K0-ySTlizc0ApDzdVLgwG819pHxyu8X5431bOblhhKajsKP8A_9vgcu0PPloQERc1ckbYH2BE9jctPfuv8AO41J0gqqP2JAx814DIVDsGdqNC_cgPH6G0umR8ljXDe7QFdsAG5VCBxkjUR8YcJuse5g1ZaeRMWg-00lBI4J0ZApqmn2hGUcLm3JR-AzDY8Mb0TNJEk68oGo_LJxGMWwLYbecjL7kN6eSxMzh5gXAwJomRSKdnRCJHMmscuD-Opx_1B3GyqNZMszUAB9EUiUvBg",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Мы его потеряли!\",\r\n    \"message\": \"Ужк несколько дней мы не знаем где тролль. Будьте бдительны и заботьтесь друг о друГе!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/zhabalaka/admin/news",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"zhabalaka",
+										"admin",
+										"news"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE_NEWS",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRcE10Um92NzBPMklNNnJnYTNNSEFWQlNMbFZRLVhaVjdHSlB4ME9CYk9BIn0.eyJleHAiOjE3MDUzMjY1ODIsImlhdCI6MTcwNTMyNDc4MiwianRpIjoiZjY0YjU4ZmItNWI5Mi00NzlkLTk2NjItMDczMjY5YzFhYTFmIiwiaXNzIjoiaHR0cHM6Ly9kZXYtYXV0aC1hZG1pbi5tZWRpYXNjb3BlLm5ldC9hdXRoL3JlYWxtcy9JRFMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiOWY0NDZhNjQtNDIxYy00MjhiLWE5ZjAtNGZjODljYmQ0NmU4IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiY29udHJvbC1ldmVudC1zZXJ2aWNlLW1pY3Jvc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiI0NDY1OGZhZi0wMTU3LTRkMWEtOGY3MC00NWY4NGQ5ZGZlMjMiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImxrLXVzZXIiLCJjZXMtcm1zLXVzZXIiLCJjZXMtc2MtdXNlciIsIm9mZmxpbmVfYWNjZXNzIiwiY2VzLWlscC11c2VyIiwiY2VzLXRlc3QiLCJjZXMtYWRtaW4iLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjQ0NjU4ZmFmLTAxNTctNGQxYS04ZjcwLTQ1Zjg0ZDlkZmUyMyIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiY2VzLWFkbWluIn0.W0CbBzwJuy-vgThm59wyYVMoGHI8ruLHdIj1Y15c2mgA54KYCBr_ARARWYganJi6K0-ySTlizc0ApDzdVLgwG819pHxyu8X5431bOblhhKajsKP8A_9vgcu0PPloQERc1ckbYH2BE9jctPfuv8AO41J0gqqP2JAx814DIVDsGdqNC_cgPH6G0umR8ljXDe7QFdsAG5VCBxkjUR8YcJuse5g1ZaeRMWg-00lBI4J0ZApqmn2hGUcLm3JR-AzDY8Mb0TNJEk68oGo_LJxGMWwLYbecjL7kN6eSxMzh5gXAwJomRSKdnRCJHMmscuD-Opx_1B3GyqNZMszUAB9EUiUvBg",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Мы его потеряли!\",\r\n    \"message\": \"Уже несколько дней мы не знаем где тролль. Будьте бдительны и заботьтесь друг о друге!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/zhabalaka/admin/news/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"zhabalaka",
+										"admin",
+										"news",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "16"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:2020",
+			"type": "string"
+		}
+	]
+}
