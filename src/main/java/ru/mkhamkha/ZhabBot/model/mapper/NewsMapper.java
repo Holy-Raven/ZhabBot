@@ -7,7 +7,7 @@ import ru.mkhamkha.ZhabBot.model.dto.NewsDTO;
 @Component
 public class NewsMapper {
 
-    public News toEntity(NewsDTO newsDTO) {
+    public static News toEntity(NewsDTO newsDTO) {
 
         return News.builder()
                 .id(newsDTO.getId())
@@ -17,7 +17,7 @@ public class NewsMapper {
                 .build();
     }
 
-    public NewsDTO toDTO(News news) {
+    public static NewsDTO toDTO(News news) {
 
         return NewsDTO.builder()
                 .id(news.getId())

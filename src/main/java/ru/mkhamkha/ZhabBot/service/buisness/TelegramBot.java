@@ -18,7 +18,7 @@ import ru.mkhamkha.ZhabBot.service.FollowerService;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ru.mkhamkha.ZhabBot.util.Constants.*;
+import static ru.mkhamkha.ZhabBot.util.Constants.Menu.*;
 
 @Log4j
 @Component

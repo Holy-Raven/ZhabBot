@@ -6,8 +6,8 @@ import lombok.extern.log4j.Log4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ru.mkhamkha.ZhabBot.util.exception.ConflictException;
-import ru.mkhamkha.ZhabBot.util.exception.NotFoundException;
+import ru.mkhamkha.ZhabBot.util.exception.exception.ConflictException;
+import ru.mkhamkha.ZhabBot.util.exception.exception.NotFoundException;
 import ru.mkhamkha.ZhabBot.model.entity.News;
 import ru.mkhamkha.ZhabBot.repository.NewsRepository;
 import ru.mkhamkha.ZhabBot.service.NewsService;
@@ -28,7 +28,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public News findById(Long newsId) {
+    public News findNewsById(Long newsId) {
 
         return newsRepository.findById(newsId).orElseThrow(() ->
                 new NotFoundException(News.class, String.format("News %d не найдена", newsId)));
@@ -42,7 +42,7 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public News updateNews(Long newsId, News news) {
 
-        News updatedNews = findById(newsId);
+        News updatedNews = findNewsById(newsId);
 
         if (news.getTitle() != null)
             updatedNews.setTitle(news.getTitle());
@@ -57,12 +57,12 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public void deleteNewsById(Long newsId) {
 
-        newsRepository.delete(findById(newsId));
+        newsRepository.delete(findNewsById(newsId));
     }
 
     @Override
     @Transactional
-    public void deleteAll() {
+    public void deleteAllNews() {
 
         List<News> forDel = newsRepository.findAll();
 

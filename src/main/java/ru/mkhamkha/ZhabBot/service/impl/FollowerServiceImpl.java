@@ -29,9 +29,12 @@ public class FollowerServiceImpl implements FollowerService {
             Follower user = Follower.builder()
                     .id(followerId)
                     .name(update.getMessage().getChat().getFirstName())
-                    .family(update.getMessage().getChat().getLastName())
                     .create(LocalDateTime.now())
                     .build();
+
+            if (update.getMessage().getChat().getLastName() == null) {
+                user.setFamily("безотцовщина");
+            }
 
             followerRepository.save(user);
             log.info("Последователь добавлен в базу: " + update.getMessage().getChat().getFirstName());

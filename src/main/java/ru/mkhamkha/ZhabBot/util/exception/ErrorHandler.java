@@ -6,6 +6,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import ru.mkhamkha.ZhabBot.util.exception.exception.ConflictException;
+import ru.mkhamkha.ZhabBot.util.exception.exception.NotFoundException;
+import ru.mkhamkha.ZhabBot.util.exception.exception.ValidationException;
 
 @RestControllerAdvice
 public class ErrorHandler {

@@ -14,8 +14,8 @@ import ru.mkhamkha.ZhabBot.model.dto.NewsDTO;
 import ru.mkhamkha.ZhabBot.model.mapper.NewsMapper;
 import ru.mkhamkha.ZhabBot.service.NewsService;
 
-import static ru.mkhamkha.ZhabBot.util.Constants.FROM_ERROR_MESSAGE;
-import static ru.mkhamkha.ZhabBot.util.Constants.SIZE_ERROR_MESSAGE;
+import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.FROM_ERROR_MESSAGE;
+import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.SIZE_ERROR_MESSAGE;
 
 @Log4j
 @RestController
@@ -24,7 +24,6 @@ import static ru.mkhamkha.ZhabBot.util.Constants.SIZE_ERROR_MESSAGE;
 public class NewsController {
 
     private final NewsService newsService;
-    private final NewsMapper newsMapper;
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
@@ -37,7 +36,7 @@ public class NewsController {
         Page<News> news = newsService.findAllNews(page);
 
         log.info("GET request: /zhabalaka/admin/news");
-        return news.map(newsMapper::toDTO);
+        return news.map(NewsMapper::toDTO);
     }
 
     @GetMapping("/{id}")
@@ -45,7 +44,7 @@ public class NewsController {
     public NewsDTO findById(@PathVariable("id") Long newsId) {
 
         log.info("GET request: /zhabalaka/admin/news/" + newsId);
-        return newsMapper.toDTO(newsService.findById(newsId));
+        return NewsMapper.toDTO(newsService.findNewsById(newsId));
     }
 
     @PostMapping
@@ -53,7 +52,7 @@ public class NewsController {
     public NewsDTO addNews(@Valid @RequestBody NewsDTO newsDTO) {
 
         log.info("POST request: /zhabalaka/admin/news");
-        return newsMapper.toDTO(newsService.addNews(newsMapper.toEntity(newsDTO)));
+        return NewsMapper.toDTO(newsService.addNews(NewsMapper.toEntity(newsDTO)));
     }
 
     @PutMapping("/{id}")
@@ -62,7 +61,7 @@ public class NewsController {
                               @PathVariable("id") Long newsId) {
 
         log.info("PUT request: /zhabalaka/admin/news/" + newsId);
-        return newsMapper.toDTO(newsService.updateNews(newsId, newsMapper.toEntity(newsDTO)));
+        return NewsMapper.toDTO(newsService.updateNews(newsId, NewsMapper.toEntity(newsDTO)));
     }
 
     @DeleteMapping("/{id}")
@@ -75,10 +74,10 @@ public class NewsController {
 
     @DeleteMapping
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void deleteAll() {
+    public void deleteAllNews() {
 
         log.info("DEL request: /zhabalaka/admin/news");
-        newsService.deleteAll();
+        newsService.deleteAllNews();
     }
 }
 

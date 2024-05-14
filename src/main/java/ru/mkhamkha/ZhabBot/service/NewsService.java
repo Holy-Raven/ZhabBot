@@ -8,7 +8,7 @@ public interface NewsService {
 
     Page<News> findAllNews(Pageable pageable);
 
-    News findById(Long newsId);
+    News findNewsById(Long newsId);
 
     News addNews(News news);
 
@@ -16,5 +16,5 @@ public interface NewsService {
 
     void deleteNewsById(Long newsId);
 
-    void deleteAll();
+    void deleteAllNews();
 }

@@ -8,7 +8,7 @@ import ru.mkhamkha.ZhabBot.model.entity.News;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import static ru.mkhamkha.ZhabBot.util.Constants.DATE_FORMAT;
+import static ru.mkhamkha.ZhabBot.util.Constants.Formatter.DATE_FORMAT;
 
 @Service
 @RequiredArgsConstructor
