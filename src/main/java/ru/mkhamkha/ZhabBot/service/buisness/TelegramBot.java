@@ -11,7 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScope
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import ru.mkhamkha.ZhabBot.config.BotConfig;
+import ru.mkhamkha.ZhabBot.config.property.BotProperties;
 import ru.mkhamkha.ZhabBot.model.entity.Follower;
 import ru.mkhamkha.ZhabBot.service.FollowerService;
 
@@ -24,13 +24,13 @@ import static ru.mkhamkha.ZhabBot.util.Constants.Menu.*;
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
 
-    private final BotConfig config;
+    private final BotProperties properties;
     private final FollowerService followerService;
     private final MenuService menuService;
 
 
-    public TelegramBot(BotConfig config, FollowerService userService, MenuService menuService) {
-        this.config = config;
+    public TelegramBot(BotProperties properties, FollowerService userService, MenuService menuService) {
+        this.properties = properties;
         this.followerService = userService;
         this.menuService = menuService;
 
@@ -53,12 +53,12 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return config.getBotName();
+        return properties.getName();
     }
 
     @Override
     public String getBotToken() {
-        return config.getToken();
+        return properties.getToken();
     }
 
     @Override
