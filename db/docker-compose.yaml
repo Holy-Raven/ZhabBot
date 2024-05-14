@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  db:
+    container_name: zhabalaka
+    image: postgres:15.3
+    environment:
+      POSTGRES_USER: zhab
+      POSTGRES_PASSWORD: zhab
+      POSTGRES_DB: zhab-bot
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: zhabalaka@ya.ru
+      PGADMIN_DEFAULT_PASSWORD: zhab
+    ports:
+      - "5050:80"
+
+
