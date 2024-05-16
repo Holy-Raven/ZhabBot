@@ -36,7 +36,7 @@ public class ConcertServiceImpl implements ConcertService {
     @Override
     public Concert findConcertById(Long concertId) {
         return concertRepository.findById(concertId).orElseThrow(() ->
-                new NotFoundException(Concert.class, String.format("Concert %d не найдена", concertId)));
+                new NotFoundException(Concert.class, String.format("Concert %d не найден", concertId)));
     }
 
     @Override
@@ -82,8 +82,7 @@ public class ConcertServiceImpl implements ConcertService {
         List<Concert> forDel = concertRepository.findAll();
 
         try {
-            if (forDel.isEmpty())
-                throw new ConflictException("Список концертов пуст.");
+            if (forDel.isEmpty()) throw new ConflictException("Список концертов пуст.");
         } catch (ConflictException e) {
             log.error(e.getMessage());
         }

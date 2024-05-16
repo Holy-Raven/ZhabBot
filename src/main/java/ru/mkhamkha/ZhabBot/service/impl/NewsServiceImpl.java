@@ -67,8 +67,7 @@ public class NewsServiceImpl implements NewsService {
         List<News> forDel = newsRepository.findAll();
 
         try {
-            if (forDel.isEmpty())
-                throw new ConflictException("Список новостей пуст.");
+            if (forDel.isEmpty()) throw new ConflictException("Список новостей пуст.");
         } catch (ConflictException e) {
             log.error(e.getMessage());
         }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import ru.mkhamkha.ZhabBot.model.entity.Place;
 import ru.mkhamkha.ZhabBot.repository.PlaceRepository;
 import ru.mkhamkha.ZhabBot.service.PlaceService;
+import ru.mkhamkha.ZhabBot.util.exception.exception.ConflictException;
 import ru.mkhamkha.ZhabBot.util.exception.exception.NotFoundException;
 
 import java.util.List;
@@ -59,11 +60,19 @@ public class PlaceServiceImpl implements PlaceService {
 
     @Override
     public void deletePlaceById(Long placeId) {
-
+        placeRepository.delete(findPlaceById(placeId));
     }
 
     @Override
     public void deleteAllPlace() {
+        List<Place> forDel = placeRepository.findAll();
 
+        try {
+            if (forDel.isEmpty()) throw new ConflictException("Список новостей пуст.");
+        } catch (ConflictException e) {
+            log.error(e.getMessage());
+        }
+
+        placeRepository.deleteAll(forDel);
     }
 }

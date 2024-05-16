@@ -78,8 +78,7 @@ public class BandServiceImpl implements BandService {
         List<Band> forDel = bandRepository.findAll();
 
         try {
-            if (forDel.isEmpty())
-                throw new ConflictException("Список команд пуст.");
+            if (forDel.isEmpty()) throw new ConflictException("Список команд пуст.");
         } catch (ConflictException e) {
             log.error(e.getMessage());
         }
