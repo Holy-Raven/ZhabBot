@@ -25,7 +25,11 @@ public class AnswerConcertService {
 
         LocalDate date = LocalDate.now();
 
-        String query = "select * from zhab.concerts where start_time >= :date order by start_time desc";
+        String query = "SELECT * FROM zhab.concerts " +
+                       "WHERE " +
+                       "    (end_time IS NOT NULL AND end_time >= :date) OR " +
+                       "    (end_time IS NULL AND start_time >= :date) " +
+                       "ORDER BY start_time DESC";
         Query nativeQuery = entityManager.createNativeQuery(query, Concert.class);
         nativeQuery.setParameter("date", date);
 
@@ -50,6 +54,7 @@ public class AnswerConcertService {
 
         builder.append("Место проведения: ");
         if (concert.getPlace() != null) {
+            builder.append("\n");
             builder.append(concert.getPlace().getName());
             builder.append(" (").append(concert.getPlace().getCity()).append(")");
         } else {
