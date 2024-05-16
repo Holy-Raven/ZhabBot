@@ -86,7 +86,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                     sendMessage(chatId, news);
                 }
                 case "/concerts" -> {
-                    String concerts = "Скоро затусим с байкерами - 22 июня в 21:00 на Nord-Feste";
+                    String concerts = menuService.upcomingConcerts();
                     sendMessage(chatId, concerts);
                 }
                 case "/market" -> {

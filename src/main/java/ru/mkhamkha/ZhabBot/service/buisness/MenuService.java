@@ -3,6 +3,7 @@ package ru.mkhamkha.ZhabBot.service.buisness;
 import com.vdurmont.emoji.EmojiParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.mkhamkha.ZhabBot.model.entity.Concert;
 import ru.mkhamkha.ZhabBot.model.entity.News;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 public class MenuService {
 
     private final AnswerNewsService answerNewsService;
+    private final AnswerConcertService answerConcertService;
 
     public String startAnswer(String name) {
 
@@ -36,6 +38,26 @@ public class MenuService {
             return builder.toString();
         } else {
             return "А новостей то и нет, все тихо спокойно.";
+        }
+    }
+
+    public String upcomingConcerts() {
+
+        List<Concert> concerts = answerConcertService.upcomingConcerts();
+
+        if (!concerts.isEmpty()) {
+            StringBuilder builder = new StringBuilder();
+            concerts.forEach(message ->
+            {
+                builder.append(answerConcertService.printConcert(message));
+                builder.append("______________________________________");
+                builder.append("\n\n");
+
+            });
+
+            return builder.toString();
+        } else {
+            return "Концертов пока не назначено, следите за новостями. Все будет!";
         }
     }
 
