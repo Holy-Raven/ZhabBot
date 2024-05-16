@@ -36,7 +36,7 @@ public class AnswerNewsService {
         builder.append(" - (").append(news.getTime().format(DateTimeFormatter.ofPattern(DATE_FORMAT))).append(")");
         builder.append("\n\n");
         builder.append(news.getMessage());
-        builder.append("\n\n");
+        builder.append("\n");
 
         return builder.toString();
     }

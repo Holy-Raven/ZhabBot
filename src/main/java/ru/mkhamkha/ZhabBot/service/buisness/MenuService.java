@@ -28,7 +28,9 @@ public class MenuService {
             news.forEach(message ->
             {
                 builder.append(answerNewsService.printNews(message));
-                builder.append("__________________________________");
+                builder.append("______________________________________");
+                builder.append("\n\n");
+
             });
 
             return builder.toString();
