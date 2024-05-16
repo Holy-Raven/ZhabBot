@@ -5,10 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.mkhamkha.ZhabBot.model.entity.News;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-
-import static ru.mkhamkha.ZhabBot.util.Constants.Formatter.DATE_FORMAT;
 
 @Service
 @RequiredArgsConstructor
@@ -30,11 +27,8 @@ public class MenuService {
             StringBuilder builder = new StringBuilder();
             news.forEach(message ->
             {
-                builder.append(message.getTitle());
-                builder.append(" - (" + message.getTime().format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + ")");
-                builder.append("\n\n");
-                builder.append(message.getMessage());
-                builder.append("\n\n");
+                builder.append(answerNewsService.printNews(message));
+                builder.append("__________________________________");
             });
 
             return builder.toString();

@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 import ru.mkhamkha.ZhabBot.model.entity.News;
 import ru.mkhamkha.ZhabBot.service.NewsService;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import static ru.mkhamkha.ZhabBot.util.Constants.Formatter.DATE_FORMAT;
 
 @Service
 @RequiredArgsConstructor
@@ -23,5 +26,18 @@ public class AnswerNewsService {
         nativeQuery.setParameter("limit", top);
 
         return nativeQuery.getResultList();
+    }
+
+    public String printNews(News news) {
+
+        StringBuilder builder = new StringBuilder();
+
+        builder.append(news.getTitle());
+        builder.append(" - (").append(news.getTime().format(DateTimeFormatter.ofPattern(DATE_FORMAT))).append(")");
+        builder.append("\n\n");
+        builder.append(news.getMessage());
+        builder.append("\n\n");
+
+        return builder.toString();
     }
 }

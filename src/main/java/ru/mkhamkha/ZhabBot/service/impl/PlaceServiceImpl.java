@@ -33,7 +33,7 @@ public class PlaceServiceImpl implements PlaceService {
     @Override
     public Place findPlaceById(Long placeId) {
         return placeRepository.findById(placeId).orElseThrow(() ->
-                new NotFoundException(Place.class, String.format("Place %d не найдена", placeId)));
+                new NotFoundException(Place.class, String.format("Place %d не найден", placeId)));
     }
 
     @Override
