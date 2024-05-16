@@ -34,8 +34,12 @@ public class ConcertDTO {
     Integer price;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
-    @JsonProperty(value = "date_time")
-    LocalDateTime date;
+    @JsonProperty(value = "start_time")
+    LocalDateTime start;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
+    @JsonProperty(value = "end_time")
+    LocalDateTime end;
 
     @Size(max = 250)
     @JsonProperty(value = "link")

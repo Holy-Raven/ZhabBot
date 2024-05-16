@@ -51,10 +51,11 @@ CREATE TABLE IF NOT EXISTS zhab.concerts
     title       VARCHAR(100)                                                                                NOT NULL,
     description VARCHAR(2000)                                                                               NOT NULL,
     price       INTEGER                                                                                     NOT NULL,
-    date_time   TIMESTAMP                                                                                   NOT NULL,
+    start_time  TIMESTAMP                                                                                   NOT NULL,
+    end_time    TIMESTAMP,
     link        VARCHAR(250),
 
-    place_id    BIGINT                                                                                      NOT NULL,
+    place_id    BIGINT,
 
     CONSTRAINT fk_concerts_place_id FOREIGN KEY (place_id) REFERENCES zhab.places (id) ON DELETE SET NULL,
     CONSTRAINT pk_concerts PRIMARY KEY (id)

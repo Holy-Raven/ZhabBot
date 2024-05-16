@@ -31,8 +31,11 @@ public class Concert {
     @Column(name = "price")
     private Integer price;
 
-    @Column(name = "date_time")
-    private LocalDateTime date;
+    @Column(name = "start_time")
+    private LocalDateTime start;
+
+    @Column(name = "end_time")
+    private LocalDateTime end;
 
     @Column(name = "link")
     private String link;

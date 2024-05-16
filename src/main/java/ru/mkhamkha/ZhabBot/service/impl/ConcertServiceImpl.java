@@ -56,8 +56,10 @@ public class ConcertServiceImpl implements ConcertService {
             updatedConcert.setDescription(concert.getDescription());
         if (concert.getPrice() != null)
             updatedConcert.setPrice(concert.getPrice());
-        if (concert.getDate() != null)
-            updatedConcert.setDate(concert.getDate());
+        if (concert.getStart() != null)
+            updatedConcert.setStart(concert.getStart());
+        if (concert.getEnd() != null)
+            updatedConcert.setEnd(concert.getEnd());
         if (concert.getLink() != null)
             updatedConcert.setLink(concert.getLink());
         if (concert.getPlace() != null)
