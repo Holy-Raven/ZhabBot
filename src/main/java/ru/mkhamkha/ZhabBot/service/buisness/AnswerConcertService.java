@@ -5,14 +5,13 @@ import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.mkhamkha.ZhabBot.model.entity.Concert;
-import ru.mkhamkha.ZhabBot.model.entity.News;
 import ru.mkhamkha.ZhabBot.service.ConcertService;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import static ru.mkhamkha.ZhabBot.util.Constants.Formatter.DATE_FORMAT;
+import static ru.mkhamkha.ZhabBot.util.Constants.Formatter.DATE_TIME_FORMAT;
 
 
 @Service
@@ -27,7 +26,7 @@ public class AnswerConcertService {
         LocalDate date = LocalDate.now();
 
         String query = "select * from zhab.concerts where start_time >= :date order by start_time desc";
-        Query nativeQuery = entityManager.createNativeQuery(query, News.class);
+        Query nativeQuery = entityManager.createNativeQuery(query, Concert.class);
         nativeQuery.setParameter("date", date);
 
         return nativeQuery.getResultList();
@@ -38,10 +37,10 @@ public class AnswerConcertService {
         StringBuilder builder = new StringBuilder();
 
         builder.append(concert.getTitle());
-        builder.append(" - (").append(concert.getStart().format(DateTimeFormatter.ofPattern(DATE_FORMAT)));
+        builder.append(" - (").append(concert.getStart().format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)));
 
         if (concert.getEnd() != null) {
-            builder.append("-").append(concert.getEnd().format(DateTimeFormatter.ofPattern(DATE_FORMAT))).append(")");
+            builder.append("-").append(concert.getEnd().format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT))).append(")");
         } else {
             builder.append(")");
         }
@@ -52,8 +51,7 @@ public class AnswerConcertService {
         builder.append("Место проведения: ");
         if (concert.getPlace() != null) {
             builder.append(concert.getPlace().getName());
-            builder.append(" Город: ");
-            builder.append(concert.getPlace().getCity());
+            builder.append(" (").append(concert.getPlace().getCity()).append(")");
         } else {
             builder.append(" Уточняется");
         }

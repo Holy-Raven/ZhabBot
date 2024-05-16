@@ -40,11 +40,11 @@ public class Concert {
     @Column(name = "link")
     private String link;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "place_id", referencedColumnName = "id")
     private Place place;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "concert_band", schema = "zhab",
             joinColumns = @JoinColumn(name = "concert_id"),
