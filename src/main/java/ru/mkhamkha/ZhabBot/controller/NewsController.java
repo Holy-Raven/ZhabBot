@@ -1,5 +1,6 @@
 package ru.mkhamkha.ZhabBot.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -27,6 +28,7 @@ public class NewsController {
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
+    @Operation(summary = "Постраничная выдача всех новостей")
     public Page<NewsDTO> findAllNews(@PositiveOrZero(message = FROM_ERROR_MESSAGE)
                                      @RequestParam(defaultValue = "0") Integer from,
                                      @Positive(message = SIZE_ERROR_MESSAGE)
@@ -41,6 +43,7 @@ public class NewsController {
 
     @GetMapping("/{id}")
     @ResponseStatus(value = HttpStatus.OK)
+    @Operation(summary = "Выдать новость по id")
     public NewsDTO findById(@PathVariable("id") Long newsId) {
 
         log.info("GET request: /zhabalaka/admin/news/" + newsId);
@@ -49,6 +52,7 @@ public class NewsController {
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
+    @Operation(summary = "Добавить новость")
     public NewsDTO addNews(@Valid @RequestBody NewsDTO newsDTO) {
 
         log.info("POST request: /zhabalaka/admin/news");
@@ -57,6 +61,7 @@ public class NewsController {
 
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.CREATED)
+    @Operation(summary = "Обновить имеющуюся новость по ее id")
     public NewsDTO updateNews(@RequestBody NewsDTO newsDTO,
                               @PathVariable("id") Long newsId) {
 
@@ -66,6 +71,7 @@ public class NewsController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Удалить новость по id")
     public void deleteById(@PathVariable("id") Long newsId) {
 
         log.info("DEL request: /zhabalaka/admin/news/" + newsId);
@@ -74,6 +80,7 @@ public class NewsController {
 
     @DeleteMapping
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Удалить все новости")
     public void deleteAllNews() {
 
         log.info("DEL request: /zhabalaka/admin/news");

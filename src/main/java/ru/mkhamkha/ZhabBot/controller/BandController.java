@@ -1,10 +1,11 @@
 package ru.mkhamkha.ZhabBot.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.FROM_ERROR_MESSAGE;
 import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.SIZE_ERROR_MESSAGE;
 
-@Slf4j
+@Log4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/bands")
@@ -30,6 +31,7 @@ public class BandController {
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
+    @Operation(summary = "Постраничная выдача всех команд")
     public Page<BandDTO> findAllBand(@PositiveOrZero(message = FROM_ERROR_MESSAGE)
                                      @RequestParam(defaultValue = "0") Integer from,
                                      @Positive(message = SIZE_ERROR_MESSAGE)
@@ -44,6 +46,7 @@ public class BandController {
 
     @GetMapping("/{id}")
     @ResponseStatus(value = HttpStatus.OK)
+    @Operation(summary = "Выдать команду по id")
     public BandDTO findBandById(@PathVariable("id") Long bandId) {
 
         log.info("GET request: /zhabalaka/admin/band/" + bandId);
@@ -52,6 +55,7 @@ public class BandController {
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
+    @Operation(summary = "Добавить новую команду")
     public BandDTO addBand(@Valid @RequestBody BandDTO bandDTO) {
 
         log.info("POST request: /zhabalaka/admin/band");
@@ -60,6 +64,7 @@ public class BandController {
 
     @PostMapping("/add-list")
     @ResponseStatus(value = HttpStatus.CREATED)
+    @Operation(summary = "Добавить несколько новух команд")
     public List<BandDTO> addListBand(@Valid @RequestBody List<BandDTO> bandDTOlist) {
 
         log.info("POST request: /zhabalaka/admin/band/add-list");
@@ -69,6 +74,7 @@ public class BandController {
 
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.CREATED)
+    @Operation(summary = "Обновить имеющуюся команду по ее id")
     public BandDTO updateBand(@RequestBody BandDTO bandDTO,
                               @PathVariable("id") Long bandId) {
 
@@ -78,6 +84,7 @@ public class BandController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Удалить команду по id")
     public void deleteBandById(@PathVariable("id") Long bandId) {
 
         log.info("DEL request: /zhabalaka/admin/band/" + bandId);
@@ -86,6 +93,7 @@ public class BandController {
 
     @DeleteMapping
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Удалить все команды")
     public void deleteAllBand() {
 
         log.info("DEL request: /zhabalaka/admin/band");

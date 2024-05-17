@@ -16,6 +16,10 @@ spring:
     username: zhab
     password: zhab
 
+springdoc:
+  api-docs:
+    enabled: true
+
 bot-properties:
   name: t.me/zhab_bot
   token: 7020627923:AAGu5F4WGyL6UxfQMc4-wDN9_r4j_a-fl7M

@@ -1,7 +1,7 @@
 package ru.mkhamkha.ZhabBot.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Slf4j
+@Log4j
 @Service
 @RequiredArgsConstructor
 public class ConcertServiceImpl implements ConcertService {

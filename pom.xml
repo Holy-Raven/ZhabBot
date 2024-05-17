@@ -21,6 +21,7 @@
         <telegram.version>5.6.0</telegram.version>
         <log4j.version>1.2.17</log4j.version>
         <lombok.version>1.18.28</lombok.version>
+        <swagger.version>2.2.0</swagger.version>
     </properties>
 
     <dependencies>
@@ -84,6 +85,14 @@
             <groupId>com.vdurmont</groupId>
             <artifactId>emoji-java</artifactId>
             <version>5.1.1</version>
+        </dependency>
+
+        <!--swagger-->
+        <!--documentation: http://localhost:8080/zhabalaka/swagger-ui/index.html OAS: http://localhost:8080/zhabalaka/v3/api-docs -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${swagger.version}</version>
         </dependency>
 
     </dependencies>
