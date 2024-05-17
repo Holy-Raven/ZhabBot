@@ -5,7 +5,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -13,18 +13,20 @@ import org.springframework.web.bind.annotation.*;
 import ru.mkhamkha.ZhabBot.model.dto.PlaceDTO;
 import ru.mkhamkha.ZhabBot.model.entity.Place;
 import ru.mkhamkha.ZhabBot.model.mapper.PlaceMapper;
+import ru.mkhamkha.ZhabBot.omponent.LogCollector;
 import ru.mkhamkha.ZhabBot.service.PlaceService;
 
 import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.FROM_ERROR_MESSAGE;
 import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.SIZE_ERROR_MESSAGE;
 
-@Log4j
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/places")
 public class PlaceController {
 
     private final PlaceService placeService;
+    private final LogCollector logCollector;
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)

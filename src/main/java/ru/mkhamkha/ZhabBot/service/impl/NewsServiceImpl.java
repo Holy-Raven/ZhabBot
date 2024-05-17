@@ -2,10 +2,11 @@ package ru.mkhamkha.ZhabBot.service.impl;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import ru.mkhamkha.ZhabBot.omponent.LogCollector;
 import ru.mkhamkha.ZhabBot.util.exception.exception.ConflictException;
 import ru.mkhamkha.ZhabBot.util.exception.exception.NotFoundException;
 import ru.mkhamkha.ZhabBot.model.entity.News;
@@ -14,12 +15,13 @@ import ru.mkhamkha.ZhabBot.service.NewsService;
 
 import java.util.List;
 
-@Log4j
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class NewsServiceImpl implements NewsService {
 
     private final NewsRepository newsRepository;
+    private final LogCollector logCollector;
 
     @Override
     public Page<News> findAllNews(Pageable pageable) {

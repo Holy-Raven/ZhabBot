@@ -1,11 +1,12 @@
 package ru.mkhamkha.ZhabBot.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.mkhamkha.ZhabBot.model.entity.Place;
+import ru.mkhamkha.ZhabBot.omponent.LogCollector;
 import ru.mkhamkha.ZhabBot.repository.PlaceRepository;
 import ru.mkhamkha.ZhabBot.service.PlaceService;
 import ru.mkhamkha.ZhabBot.util.exception.exception.ConflictException;
@@ -14,12 +15,13 @@ import ru.mkhamkha.ZhabBot.util.exception.exception.NotFoundException;
 import java.util.List;
 import java.util.Optional;
 
-@Log4j
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PlaceServiceImpl implements PlaceService {
 
     private final PlaceRepository placeRepository;
+    private final LogCollector logCollector;
 
     @Override
     public Optional<Place> findByNameAndCity(String name, String city) {

@@ -1,12 +1,13 @@
 package ru.mkhamkha.ZhabBot.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.mkhamkha.ZhabBot.model.entity.Band;
 import ru.mkhamkha.ZhabBot.model.entity.Concert;
+import ru.mkhamkha.ZhabBot.omponent.LogCollector;
 import ru.mkhamkha.ZhabBot.repository.ConcertRepository;
 import ru.mkhamkha.ZhabBot.service.BandService;
 import ru.mkhamkha.ZhabBot.service.ConcertService;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Log4j
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ConcertServiceImpl implements ConcertService {
@@ -26,6 +27,7 @@ public class ConcertServiceImpl implements ConcertService {
     private final ConcertRepository concertRepository;
     private final PlaceService placeService;
     private final BandService bandService;
+    private final LogCollector logCollector;
 
     @Override
     public Page<Concert> findAllConcerts(Pageable pageable) {

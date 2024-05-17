@@ -12,9 +12,12 @@ spring:
     default-schema: public
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/zhab-bot
-    username: zhab
-    password: zhab
+#    url: jdbc:postgresql://localhost:5432/zhab-bot
+#    username: zhab
+#    password: zhab
+    url: jdbc:postgresql://localhost:5432/dany_db
+    username: dany
+    password: dany
 
 springdoc:
   api-docs:
