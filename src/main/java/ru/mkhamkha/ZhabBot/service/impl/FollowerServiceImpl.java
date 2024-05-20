@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.mkhamkha.ZhabBot.omponent.LogCollector;
 import ru.mkhamkha.ZhabBot.service.FollowerService;
 import ru.mkhamkha.ZhabBot.model.entity.Follower;
 import ru.mkhamkha.ZhabBot.repository.FollowerRepository;
@@ -19,7 +18,6 @@ import java.util.Optional;
 public class FollowerServiceImpl implements FollowerService {
 
     private final FollowerRepository followerRepository;
-    private final LogCollector logCollector;
 
     @Override
     @Transactional

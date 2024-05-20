@@ -232,6 +232,46 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "crud concerts",
+					"item": [
+						{
+							"name": "ADD_NEW_CONCERT",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRcE10Um92NzBPMklNNnJnYTNNSEFWQlNMbFZRLVhaVjdHSlB4ME9CYk9BIn0.eyJleHAiOjE3MDUzMjY1ODIsImlhdCI6MTcwNTMyNDc4MiwianRpIjoiZjY0YjU4ZmItNWI5Mi00NzlkLTk2NjItMDczMjY5YzFhYTFmIiwiaXNzIjoiaHR0cHM6Ly9kZXYtYXV0aC1hZG1pbi5tZWRpYXNjb3BlLm5ldC9hdXRoL3JlYWxtcy9JRFMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiOWY0NDZhNjQtNDIxYy00MjhiLWE5ZjAtNGZjODljYmQ0NmU4IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiY29udHJvbC1ldmVudC1zZXJ2aWNlLW1pY3Jvc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiI0NDY1OGZhZi0wMTU3LTRkMWEtOGY3MC00NWY4NGQ5ZGZlMjMiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImxrLXVzZXIiLCJjZXMtcm1zLXVzZXIiLCJjZXMtc2MtdXNlciIsIm9mZmxpbmVfYWNjZXNzIiwiY2VzLWlscC11c2VyIiwiY2VzLXRlc3QiLCJjZXMtYWRtaW4iLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjQ0NjU4ZmFmLTAxNTctNGQxYS04ZjcwLTQ1Zjg0ZDlkZmUyMyIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiY2VzLWFkbWluIn0.W0CbBzwJuy-vgThm59wyYVMoGHI8ruLHdIj1Y15c2mgA54KYCBr_ARARWYganJi6K0-ySTlizc0ApDzdVLgwG819pHxyu8X5431bOblhhKajsKP8A_9vgcu0PPloQERc1ckbYH2BE9jctPfuv8AO41J0gqqP2JAx814DIVDsGdqNC_cgPH6G0umR8ljXDe7QFdsAG5VCBxkjUR8YcJuse5g1ZaeRMWg-00lBI4J0ZApqmn2hGUcLm3JR-AzDY8Mb0TNJEk68oGo_LJxGMWwLYbecjL7kN6eSxMzh5gXAwJomRSKdnRCJHMmscuD-Opx_1B3GyqNZMszUAB9EUiUvBg",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Concert Title\",\r\n  \"description\": \"Concert Description\",\r\n  \"price\": 50,\r\n  \"start_time\": \"2024-05-20 18:00\",\r\n  \"link\": \"https://example.com/concert\",\r\n  \"place\": {\r\n    \"name\": \"Concert Venue\",\r\n    \"city\": \"City Name\",\r\n    \"description\": \"Venue Description\",\r\n    \"link\": \"https://example.com/venue\"\r\n  },\r\n  \"band\": [\r\n    {\r\n      \"name\": \"Band Name 1\",\r\n      \"city\": \"City Name 1\",\r\n      \"genre\": \"Genre 1\",\r\n      \"description\": \"Band Description 1\",\r\n      \"link\": \"https://example.com/band1\"\r\n    },\r\n    {\r\n      \"name\": \"Band Name 2\",\r\n      \"city\": \"City Name 2\",\r\n      \"genre\": \"Genre 2\",\r\n      \"description\": \"Band Description 2\",\r\n      \"link\": \"https://example.com/band2\"\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/zhabalaka/admin/concerts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"zhabalaka",
+										"admin",
+										"concerts"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}

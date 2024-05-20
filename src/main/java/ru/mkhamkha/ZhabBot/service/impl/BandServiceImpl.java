@@ -6,7 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.mkhamkha.ZhabBot.model.entity.Band;
-import ru.mkhamkha.ZhabBot.omponent.LogCollector;
 import ru.mkhamkha.ZhabBot.repository.BandRepository;
 import ru.mkhamkha.ZhabBot.service.BandService;
 import ru.mkhamkha.ZhabBot.util.exception.exception.ConflictException;
@@ -21,7 +20,6 @@ import java.util.Optional;
 public class BandServiceImpl implements BandService {
 
     private final BandRepository bandRepository;
-    private final LogCollector logCollector;
 
     @Override
     public Optional<Band> findByNameAndCity(String name, String city) {

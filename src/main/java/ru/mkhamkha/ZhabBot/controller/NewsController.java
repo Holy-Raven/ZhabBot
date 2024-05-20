@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.mkhamkha.ZhabBot.model.entity.News;
 import ru.mkhamkha.ZhabBot.model.dto.NewsDTO;
 import ru.mkhamkha.ZhabBot.model.mapper.NewsMapper;
-import ru.mkhamkha.ZhabBot.omponent.LogCollector;
 import ru.mkhamkha.ZhabBot.service.NewsService;
 
 import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.FROM_ERROR_MESSAGE;
@@ -26,7 +25,6 @@ import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.SIZE_ERROR_MESSAGE
 public class NewsController {
 
     private final NewsService newsService;
-    private final LogCollector logCollector;
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)

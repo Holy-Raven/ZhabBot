@@ -1,0 +1,21 @@
+<configuration>
+    <!-- Консольный аппендер для вывода логов в консоль с цветным шаблоном -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %cyan([%thread]) %green(%logger{36}) - %msg%n%ex
+            </pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- Кастомный аппендер для отправки логов в LogCollector -->
+    <appender name="CUSTOM" class="ru.mkhamkha.ZhabBot.component.log.LogAppender"/>
+
+    <!-- Уровень логирования и использование аппендеров -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="CUSTOM"/>
+    </root>
+
+</configuration>

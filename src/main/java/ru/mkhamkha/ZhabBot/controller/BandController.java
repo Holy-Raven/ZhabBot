@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.mkhamkha.ZhabBot.model.dto.BandDTO;
 import ru.mkhamkha.ZhabBot.model.entity.Band;
 import ru.mkhamkha.ZhabBot.model.mapper.BandMapper;
-import ru.mkhamkha.ZhabBot.omponent.LogCollector;
 import ru.mkhamkha.ZhabBot.service.BandService;
 
 import java.util.List;
@@ -29,7 +28,6 @@ import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.SIZE_ERROR_MESSAGE
 public class BandController {
 
     private final BandService bandService;
-    private final LogCollector logCollector;
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)

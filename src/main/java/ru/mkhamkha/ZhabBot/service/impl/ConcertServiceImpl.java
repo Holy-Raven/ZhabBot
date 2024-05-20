@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.mkhamkha.ZhabBot.model.entity.Band;
 import ru.mkhamkha.ZhabBot.model.entity.Concert;
-import ru.mkhamkha.ZhabBot.omponent.LogCollector;
 import ru.mkhamkha.ZhabBot.repository.ConcertRepository;
 import ru.mkhamkha.ZhabBot.service.BandService;
 import ru.mkhamkha.ZhabBot.service.ConcertService;
@@ -27,7 +26,6 @@ public class ConcertServiceImpl implements ConcertService {
     private final ConcertRepository concertRepository;
     private final PlaceService placeService;
     private final BandService bandService;
-    private final LogCollector logCollector;
 
     @Override
     public Page<Concert> findAllConcerts(Pageable pageable) {

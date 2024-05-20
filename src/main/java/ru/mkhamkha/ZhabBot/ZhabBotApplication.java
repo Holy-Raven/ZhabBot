@@ -9,5 +9,4 @@ public class ZhabBotApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ZhabBotApplication.class, args);
 	}
-
 }
