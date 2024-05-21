@@ -13,7 +13,7 @@
     <!-- Уровень логирования и использование аппендеров -->
     <root level="${rootLogLevel}">
         <appender-ref ref="CONSOLE" />
-        <appender-ref ref="LOKI" />
+        <appender-ref ref="CUSTOM" />
     </root>
 
 </configuration>
