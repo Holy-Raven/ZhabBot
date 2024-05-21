@@ -1,5 +1,8 @@
 <configuration>
 
+    <!-- Уровень логирования объявляется в application.yaml -->
+    <springProperty scope="context" name="rootLogLevel" source="logging.level.root"/>
+
     <!-- Стандартный консольный аппендер Spring Boot -->
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
@@ -8,9 +11,9 @@
     <appender name="CUSTOM" class="ru.mkhamkha.ZhabBot.component.log.LogAppender"/>
 
     <!-- Уровень логирования и использование аппендеров -->
-    <root level="INFO">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="CUSTOM"/>
+    <root level="${rootLogLevel}">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="LOKI" />
     </root>
 
 </configuration>
