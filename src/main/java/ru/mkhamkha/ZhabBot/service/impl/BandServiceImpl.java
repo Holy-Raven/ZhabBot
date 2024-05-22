@@ -66,7 +66,7 @@ public class BandServiceImpl implements BandService {
         if (band.getLink() != null)
             updatedBand.setLink(band.getLink());
 
-        return updatedBand;
+        return bandRepository.save(updatedBand);
     }
 
     @Override
