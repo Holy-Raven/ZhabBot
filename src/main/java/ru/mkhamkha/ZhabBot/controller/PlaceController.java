@@ -37,7 +37,7 @@ public class PlaceController {
         PageRequest page = PageRequest.of(from, size);
         Page<Place> places = placeService.findAllPlaces(page);
 
-        log.info("GET request: /zhabalaka/admin/places");
+        log.info("[GET] request: /zhabalaka/admin/places");
         return places.map(PlaceMapper::toDTO);
     }
 
@@ -46,7 +46,7 @@ public class PlaceController {
     @Operation(summary = "Выдать концертную площадку по id")
     public PlaceDTO findPlaceById(@PathVariable("id") Long placeId) {
 
-        log.info("GET request: /zhabalaka/admin/place/" + placeId);
+        log.info("[GET] request: /zhabalaka/admin/place/{}", placeId);
         return PlaceMapper.toDTO(placeService.findPlaceById(placeId));
     }
 
@@ -55,8 +55,10 @@ public class PlaceController {
     @Operation(summary = "Добавить новую концертную площадку")
     public PlaceDTO addPlace(@Valid @RequestBody PlaceDTO placeDTO) {
 
-        log.info("POST request: /zhabalaka/admin/place");
-        return PlaceMapper.toDTO(placeService.addPlace(PlaceMapper.toEntity(placeDTO)));
+        PlaceDTO result = PlaceMapper.toDTO(placeService.addPlace(PlaceMapper.toEntity(placeDTO)));
+
+        log.info("[POST] request: /zhabalaka/admin/place, id:{}", result.getId());
+        return result;
     }
 
     @PutMapping("/{id}")
@@ -65,7 +67,7 @@ public class PlaceController {
     public PlaceDTO updatePlace(@RequestBody PlaceDTO placeDTO,
                                 @PathVariable("id") Long placeId) {
 
-        log.info("PUT request: /zhabalaka/admin/place/" + placeId);
+        log.info("[PUT] request: /zhabalaka/admin/place/{}", placeId);
         return PlaceMapper.toDTO(placeService.updatePlace(placeId, PlaceMapper.toEntity(placeDTO)));
     }
 
@@ -74,7 +76,7 @@ public class PlaceController {
     @Operation(summary = "Удалить концертную прлощадку по id")
     public void deletePlaceById(@PathVariable("id") Long placeId) {
 
-        log.info("DEL request: /zhabalaka/admin/place/" + placeId);
+        log.info("[DEL] request: /zhabalaka/admin/place/{}", placeId);
         placeService.deletePlaceById(placeId);
     }
 
@@ -83,7 +85,7 @@ public class PlaceController {
     @Operation(summary = "Удалить все концертные площадки")
     public void deleteAllPlace() {
 
-        log.info("DEL request: /zhabalaka/admin/place");
+        log.info("[DEL] request: /zhabalaka/admin/place");
         placeService.deleteAllPlace();
     }
 }
