@@ -40,7 +40,7 @@ public class BandController {
         PageRequest page = PageRequest.of(from, size);
         Page<Band> bands = bandService.findAllBands(page);
 
-        log.info("GET request: /zhabalaka/admin/bands");
+        log.info("[GET] request: /zhabalaka/admin/bands");
         return bands.map(BandMapper::toDTO);
     }
 
@@ -49,7 +49,7 @@ public class BandController {
     @Operation(summary = "Выдать команду по id")
     public BandDTO findBandById(@PathVariable("id") Long bandId) {
 
-        log.info("GET request: /zhabalaka/admin/band/" + bandId);
+        log.info("[GET] request: /zhabalaka/admin/band/{}", bandId);
         return BandMapper.toDTO(bandService.findBandById(bandId));
     }
 
@@ -58,8 +58,10 @@ public class BandController {
     @Operation(summary = "Добавить новую команду")
     public BandDTO addBand(@Valid @RequestBody BandDTO bandDTO) {
 
-        log.info("POST request: /zhabalaka/admin/band");
-        return BandMapper.toDTO(bandService.addBand(BandMapper.toEntity(bandDTO)));
+        BandDTO result = BandMapper.toDTO(bandService.addBand(BandMapper.toEntity(bandDTO)));
+
+        log.info("[POST] request: /zhabalaka/admin/band, id:{}", result.getId());
+        return result;
     }
 
     @PostMapping("/add-list")
@@ -67,8 +69,9 @@ public class BandController {
     @Operation(summary = "Добавить несколько новух команд")
     public List<BandDTO> addListBand(@Valid @RequestBody List<BandDTO> bandDTOlist) {
 
-        log.info("POST request: /zhabalaka/admin/band/add-list");
         List<Band> result = bandService.addBandList(bandDTOlist.stream().map(BandMapper::toEntity).collect(Collectors.toList()));
+
+        log.info("[POST] request: /zhabalaka/admin/band/add-list");
         return result.stream().map(BandMapper::toDTO).collect(Collectors.toList());
     }
 
@@ -78,7 +81,7 @@ public class BandController {
     public BandDTO updateBand(@RequestBody BandDTO bandDTO,
                               @PathVariable("id") Long bandId) {
 
-        log.info("PUT request: /zhabalaka/admin/band/" + bandId);
+        log.info("[PUT] request: /zhabalaka/admin/band/{}", bandId);
         return BandMapper.toDTO(bandService.updateBand(bandId, BandMapper.toEntity(bandDTO)));
     }
 
@@ -87,7 +90,7 @@ public class BandController {
     @Operation(summary = "Удалить команду по id")
     public void deleteBandById(@PathVariable("id") Long bandId) {
 
-        log.info("DEL request: /zhabalaka/admin/band/" + bandId);
+        log.info("[DEL] request: /zhabalaka/admin/band/{}", bandId);
         bandService.deleteBandById(bandId);
     }
 
@@ -96,7 +99,7 @@ public class BandController {
     @Operation(summary = "Удалить все команды")
     public void deleteAllBand() {
 
-        log.info("DEL request: /zhabalaka/admin/band");
+        log.info("[DEL] request: /zhabalaka/admin/band");
         bandService.deleteAllBand();
     }
 }

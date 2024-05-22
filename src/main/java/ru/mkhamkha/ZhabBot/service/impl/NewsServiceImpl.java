@@ -40,6 +40,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
+    @Transactional
     public News updateNews(Long newsId, News news) {
 
         News updatedNews = findNewsById(newsId);
@@ -61,7 +62,6 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    @Transactional
     public void deleteAllNews() {
 
         List<News> forDel = newsRepository.findAll();

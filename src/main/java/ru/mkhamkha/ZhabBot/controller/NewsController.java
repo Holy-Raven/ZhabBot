@@ -37,7 +37,7 @@ public class NewsController {
         PageRequest page = PageRequest.of(from, size);
         Page<News> news = newsService.findAllNews(page);
 
-        log.info("GET request: /zhabalaka/admin/news");
+        log.info("[GET] request: /zhabalaka/admin/news");
         return news.map(NewsMapper::toDTO);
     }
 
@@ -46,7 +46,7 @@ public class NewsController {
     @Operation(summary = "Выдать новость по id")
     public NewsDTO findById(@PathVariable("id") Long newsId) {
 
-        log.info("GET request: /zhabalaka/admin/news/" + newsId);
+        log.info("[GET] request: /zhabalaka/admin/news/{}", newsId);
         return NewsMapper.toDTO(newsService.findNewsById(newsId));
     }
 
@@ -55,8 +55,10 @@ public class NewsController {
     @Operation(summary = "Добавить новость")
     public NewsDTO addNews(@Valid @RequestBody NewsDTO newsDTO) {
 
-        log.info("POST request: /zhabalaka/admin/news");
-        return NewsMapper.toDTO(newsService.addNews(NewsMapper.toEntity(newsDTO)));
+        NewsDTO result = NewsMapper.toDTO(newsService.addNews(NewsMapper.toEntity(newsDTO)));
+
+        log.info("[POST] request: /zhabalaka/admin/news, id:{}", result.getId());
+        return result;
     }
 
     @PutMapping("/{id}")
@@ -65,7 +67,7 @@ public class NewsController {
     public NewsDTO updateNews(@RequestBody NewsDTO newsDTO,
                               @PathVariable("id") Long newsId) {
 
-        log.info("PUT request: /zhabalaka/admin/news/" + newsId);
+        log.info("[PUT] request: /zhabalaka/admin/news/{}", newsId);
         return NewsMapper.toDTO(newsService.updateNews(newsId, NewsMapper.toEntity(newsDTO)));
     }
 
@@ -74,7 +76,7 @@ public class NewsController {
     @Operation(summary = "Удалить новость по id")
     public void deleteById(@PathVariable("id") Long newsId) {
 
-        log.info("DEL request: /zhabalaka/admin/news/" + newsId);
+        log.info("[DEL] request: /zhabalaka/admin/news/{}", newsId);
         newsService.deleteNewsById(newsId);
     }
 
@@ -83,7 +85,7 @@ public class NewsController {
     @Operation(summary = "Удалить все новости")
     public void deleteAllNews() {
 
-        log.info("DEL request: /zhabalaka/admin/news");
+        log.info("[DEL] request: /zhabalaka/admin/news");
         newsService.deleteAllNews();
     }
 }

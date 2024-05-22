@@ -1,5 +1,6 @@
 package ru.mkhamkha.ZhabBot.service.impl;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -49,6 +50,7 @@ public class BandServiceImpl implements BandService {
     }
 
     @Override
+    @Transactional
     public Band updateBand(Long bandId, Band band) {
 
         Band updatedBand = findBandById(bandId);
