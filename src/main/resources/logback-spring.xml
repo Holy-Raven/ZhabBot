@@ -2,6 +2,7 @@
 
     <!-- Уровень логирования объявляется в application.yaml -->
     <springProperty scope="context" name="rootLogLevel" source="logging.level.root"/>
+    <springProperty scope="context" name="appLogLevel" source="logging.level.ru.mkhamkha"/>
 
     <!-- Стандартный консольный аппендер Spring Boot -->
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
@@ -9,6 +10,11 @@
 
     <!-- Кастомный аппендер для отправки логов в LogCollector -->
     <appender name="CUSTOM" class="ru.mkhamkha.ZhabBot.component.log.LogAppender"/>
+
+    <!-- Логгер для CUSTOM с динамическим уровнем логирования -->
+    <logger name="APP_LOGGER" level="${appLogLevel}" additivity="true">
+        <appender-ref ref="CUSTOM" />
+    </logger>
 
     <!-- Уровень логирования и использование аппендеров -->
     <root level="${rootLogLevel}">

@@ -38,7 +38,7 @@ public class FollowerServiceImpl implements FollowerService {
             }
 
             followerRepository.save(user);
-            log.info("Последователь добавлен в базу: " + update.getMessage().getChat().getFirstName());
+            log.info("Последователь добавлен в базу: {}", update.getMessage().getChat().getFirstName());
 
         }
     }

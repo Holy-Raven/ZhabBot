@@ -22,7 +22,8 @@ springdoc:
 
 logging:
   level:
-    root: INFO
+    root: info
+    ru.mkhamkha: debug
 
 bot-properties:
   name: t.me/zhab_bot
