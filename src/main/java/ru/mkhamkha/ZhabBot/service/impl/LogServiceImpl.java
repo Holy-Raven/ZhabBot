@@ -9,7 +9,10 @@ import ru.mkhamkha.ZhabBot.repository.LogRepository;
 import ru.mkhamkha.ZhabBot.service.LogService;
 import ru.mkhamkha.ZhabBot.util.exception.exception.NotFoundException;
 
-import java.time.LocalDate;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+
+import static ru.mkhamkha.ZhabBot.util.Constants.Formatter.*;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +32,25 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public Page<Log> findAllLogByParam(String level, String logger, String text, LocalDate startDate, LocalDate endDate, Pageable pageable) {
-        return null;
+    public Page<Log> findAllLogByParam(String level, String logger, String text, String startDate, String endDate, Pageable pageable) {
+
+        LocalDateTime start = null;
+        LocalDateTime end = null;
+
+        // Парсинг даты начала и установка времени на начало дня
+        if (startDate != null && !startDate.isEmpty()) {
+            start = LocalDate.parse(startDate, DateTimeFormatter.ofPattern(DATE_FORMAT)).atStartOfDay();
+        }
+
+        // Парсинг даты окончания и установка времени на конец дня
+        if (endDate != null && !endDate.isEmpty()) {
+            end = LocalDate.parse(endDate, DateTimeFormatter.ofPattern(DATE_FORMAT)).atTime(LocalTime.MAX);
+        } else {
+            if (start != null) {
+                end = start.with(LocalTime.MAX);
+            }
+        }
+
+        return logRepository.findAllLogByParam(level, logger, text, start, end, pageable);
     }
 }
