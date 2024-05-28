@@ -1,15 +1,12 @@
 package ru.mkhamkha.ZhabBot.service.buisness;
 
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.mkhamkha.ZhabBot.config.property.BotProperties;
 import ru.mkhamkha.ZhabBot.model.entity.Follower;
@@ -22,149 +19,98 @@ import static ru.mkhamkha.ZhabBot.util.Constants.Menu.*;
 
 @Slf4j
 @Component
-public class TelegramBot extends TelegramLongPollingBot {
+public class ZhabBotService extends InsideBotService {
 
-    private final BotProperties properties;
-    private final FollowerService followerService;
-    private final MenuService menuService;
+    protected final BotProperties properties;
+    protected final FollowerService followerService;
+    protected final MenuService menuService;
 
-
-    public TelegramBot(BotProperties properties, FollowerService userService, MenuService menuService) {
+    public ZhabBotService(BotProperties properties, FollowerService followerService, MenuService menuService) {
         this.properties = properties;
-        this.followerService = userService;
+        this.followerService = followerService;
         this.menuService = menuService;
+    }
+
+    @PostConstruct
+    public void init() {
+        setBotCredentials(properties.getName(), properties.getToken());
 
         List<BotCommand> listOfCommands = new ArrayList<>();
         listOfCommands.add(new BotCommand("/start", START));
         listOfCommands.add(new BotCommand("/description", DESCRIPTION));
         listOfCommands.add(new BotCommand("/news", NEWS));
         listOfCommands.add(new BotCommand("/concerts", CONCERTS));
+        listOfCommands.add(new BotCommand("/market", MARKET));
         listOfCommands.add(new BotCommand("/mydata", MY_DATA));
         listOfCommands.add(new BotCommand("/deldata", DELETE_DATA));
         listOfCommands.add(new BotCommand("/help", HELP));
-        listOfCommands.add(new BotCommand("/market", MARKET));
 
         try {
             this.execute(new SetMyCommands(listOfCommands, new BotCommandScopeDefault(), null));
         } catch (TelegramApiException e) {
-            log.error("Произошла ошибка: " + e.getMessage());
+            log.error("Произошла ошибка: {}", e.getMessage());
         }
-    }
-
-    @Override
-    public String getBotUsername() {
-        return properties.getName();
-    }
-
-    @Override
-    public String getBotToken() {
-        return properties.getToken();
     }
 
     @Override
     public void onUpdateReceived(Update update) {
 
-        if (update.hasMessage() && update.getMessage().hasText()) {
+        setUpdateEvent(update);  // Устанавливаем текущее событие обновления
 
+        if (update.hasMessage() && update.getMessage().hasText()) {
             String message = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
 
             switch (message) {
                 case "/start" -> {
-
-                    String answer = menuService.startAnswer(update.getMessage().getChat().getFirstName());
-                    sendMessage(chatId, answer);
-
+                    String answer = loadMessage("main");
+                    sendImageMessage("main");
+                    sendMessage(answer);
                     followerService.addFollower(update);
                 }
                 case "/description" -> {
                     String description = menuService.descriptionAnswer();
-                    sendMessage(chatId, description);
+                    sendMessage(description);
                 }
                 case "/news" -> {
                     String news = menuService.newsAnswer(5);
-                    sendMessage(chatId, news);
+                    sendMessage(news);
                 }
                 case "/concerts" -> {
                     String concerts = menuService.upcomingConcerts();
-                    sendMessage(chatId, concerts);
+                    sendMessage(concerts);
                 }
                 case "/market" -> {
                     String settings = "Продаем всякое. Присморись, у нас точно есть то что ты ищешь!";
-                    sendMessage(chatId, settings);
+                    sendMessage(settings);
                 }
                 case "/mydata" -> {
-
                     String mydata;
-
                     if (followerService.findById(chatId).isPresent()) {
                         Follower follower = followerService.findById(chatId).get();
                         mydata = String.format("Знаю, что звать тебя - %s, а по батюшке - %s.", follower.getName(), follower.getFamily());
                     } else {
                         mydata = "Кажется мы не знакомы, жми /start и давай дружить.";
                     }
-
-                    sendMessage(chatId, mydata);
+                    sendMessage(mydata);
                 }
                 case "/deldata" -> {
-
                     String deldata;
-
                     if (followerService.deleteFollowerById(chatId)) {
                         deldata = "Ой, а кто-это тут у нас? ЖаБЪ таких не знает! \n" +
-                                  "Жми /start, давай знакомиться! ";
+                                "Жми /start, давай знакомиться! ";
                     } else {
                         deldata = "ЖаБЪ и так тебя впервые видит! \n" +
-                                  "Жми /start, давай знакомиться! ";
+                                "Жми /start, давай знакомиться! ";
                     }
-                    sendMessage(chatId, deldata);
+                    sendMessage(deldata);
                 }
                 case "/help" -> {
                     String help = "Бог поможет.";
-                    sendMessage(chatId, help);
+                    sendMessage(help);
                 }
-                default -> sendMessage(chatId, "Извини, моя твоя не понимать, приходи потом)");
+                default -> sendMessage("Извини, моя твоя не понимать, приходи потом)");
             }
-        }
-    }
-
-
-
-    //интерактивная клавиатура
-    private void keyboard(SendMessage message) {
-        ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
-        List<KeyboardRow> keyboardRows = new ArrayList<>();
-
-        KeyboardRow row;
-
-        row = new KeyboardRow();
-        row.add("/news");
-        row.add("/concerts");
-        row.add("/market");
-        keyboardRows.add(row);
-
-        row = new KeyboardRow();
-        row.add("/help");
-        row.add("/mydata");
-        row.add("/deldata");
-
-        keyboardRows.add(row);
-
-        keyboardMarkup.setKeyboard(keyboardRows);
-        message.setReplyMarkup(keyboardMarkup);
-    }
-
-    private void sendMessage(long chatId, String sendMessage) {
-        SendMessage message = new SendMessage();
-        message.setChatId(String.valueOf(chatId));
-        message.setText(sendMessage);
-
-        keyboard(message);
-
-        try {
-            execute(message);
-        } catch (TelegramApiException e) {
-            log.error("Произошла ошибка: " + e.getMessage());
         }
     }
 }

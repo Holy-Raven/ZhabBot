@@ -15,11 +15,11 @@ public class MenuService {
     private final AnswerNewsService answerNewsService;
     private final AnswerConcertService answerConcertService;
 
-    public String startAnswer(String name) {
-
-        //кодировка смайлов взята с https://emojisup.org
-        return EmojiParser.parseToUnicode("Привет, " + name + " ЖаБЪ тебя скушает! Но не сегодня, живи пока что!" + " :blush:");
-    }
+//    public String startAnswer(String name) {
+//
+//        //кодировка смайлов взята с https://emojisup.org
+//        return EmojiParser.parseToUnicode("Привет, " + name + " ЖаБЪ тебя скушает! Но не сегодня, живи пока что!" + " :blush:");
+//    }
 
     public String newsAnswer(Integer top) {
 
