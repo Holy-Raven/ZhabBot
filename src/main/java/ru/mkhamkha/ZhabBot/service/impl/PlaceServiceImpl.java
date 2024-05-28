@@ -1,7 +1,8 @@
 package ru.mkhamkha.ZhabBot.service.impl;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import ru.mkhamkha.ZhabBot.util.exception.exception.NotFoundException;
 import java.util.List;
 import java.util.Optional;
 
-@Log4j
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PlaceServiceImpl implements PlaceService {
@@ -42,6 +43,7 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
+    @Transactional
     public Place updatePlace(Long placeId, Place place) {
 
         Place updatedPlace = findPlaceById(placeId);
@@ -55,7 +57,7 @@ public class PlaceServiceImpl implements PlaceService {
         if (place.getLink() != null)
             updatedPlace.setLink(place.getLink());
 
-        return updatedPlace;
+        return placeRepository.save(updatedPlace);
     }
 
     @Override

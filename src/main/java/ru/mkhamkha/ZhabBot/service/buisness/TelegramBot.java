@@ -1,6 +1,6 @@
 package ru.mkhamkha.ZhabBot.service.buisness;
 
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
@@ -20,7 +20,7 @@ import java.util.List;
 
 import static ru.mkhamkha.ZhabBot.util.Constants.Menu.*;
 
-@Log4j
+@Slf4j
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
 

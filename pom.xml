@@ -12,19 +12,21 @@
 
     <groupId>ru.mkhamkha</groupId>
     <artifactId>ZhabBot</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>ZhabBot</name>
     <description>zhab telegram bot</description>
 
     <properties>
         <java.version>17</java.version>
-        <telegram.version>5.6.0</telegram.version>
-        <log4j.version>1.2.17</log4j.version>
+        <telegram.version>6.9.0</telegram.version>
         <lombok.version>1.18.28</lombok.version>
         <swagger.version>2.2.0</swagger.version>
+        <emoji.version>5.1.1</emoji.version>
     </properties>
 
     <dependencies>
+
+        <!-- Spring Boot Starters -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -51,48 +53,53 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Telegram Bots -->
         <dependency>
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots</artifactId>
             <version>${telegram.version}</version>
         </dependency>
 
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${log4j.version}</version>
-        </dependency>
-
-        <!--DB-->
+        <!-- Database -->
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!--smile & emo-->
+        <!-- Emoji Support -->
         <dependency>
             <groupId>com.vdurmont</groupId>
             <artifactId>emoji-java</artifactId>
-            <version>5.1.1</version>
+            <version>${emoji.version}</version>
         </dependency>
 
-        <!--swagger-->
-        <!--documentation: http://localhost:8080/zhabalaka/swagger-ui/index.html OAS: http://localhost:8080/zhabalaka/v3/api-docs -->
+        <!-- Swagger/OpenAPI -->
+        <!-- Documentation: http://localhost:2020/zhabalaka/swagger-ui/index.html -->
+        <!-- OAS: http://localhost:2020/zhabalaka/v3/api-docs -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>${swagger.version}</version>
+        </dependency>
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
         </dependency>
 
     </dependencies>

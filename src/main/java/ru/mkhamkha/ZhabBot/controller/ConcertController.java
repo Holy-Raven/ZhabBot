@@ -5,7 +5,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import ru.mkhamkha.ZhabBot.service.ConcertService;
 import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.FROM_ERROR_MESSAGE;
 import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.SIZE_ERROR_MESSAGE;
 
-@Log4j
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/concerts")
@@ -37,7 +37,7 @@ public class ConcertController {
         PageRequest page = PageRequest.of(from, size);
         Page<Concert> concerts = concertService.findAllConcerts(page);
 
-        log.info("GET request: /zhabalaka/admin/concerts");
+        log.info("[GET] request: /zhabalaka/admin/concerts");
         return concerts.map(ConcertMapper::toDTO);
     }
 
@@ -46,7 +46,7 @@ public class ConcertController {
     @Operation(summary = "Выдать концерт по id")
     public ConcertDTO findConcertById(@PathVariable("id") Long concertId) {
 
-        log.info("GET request: /zhabalaka/admin/concert/" + concertId);
+        log.info("[GET] request: /zhabalaka/admin/concert/{}", concertId);
         return ConcertMapper.toDTO(concertService.findConcertById(concertId));
     }
 
@@ -55,8 +55,10 @@ public class ConcertController {
     @Operation(summary = "Добавить новый концерт")
     public ConcertDTO addConcert(@Valid @RequestBody ConcertDTO concertDTO) {
 
-        log.info("POST request: /zhabalaka/admin/concert");
-        return ConcertMapper.toDTO(concertService.addConcert(ConcertMapper.toEntity(concertDTO)));
+        ConcertDTO result = ConcertMapper.toDTO(concertService.addConcert(ConcertMapper.toEntity(concertDTO)));
+
+        log.info("[POST] request: /zhabalaka/admin/concert, id:{}", result.getId());
+        return result;
     }
 
     @PutMapping("/{id}")
@@ -65,7 +67,7 @@ public class ConcertController {
     public ConcertDTO updateConcert(@RequestBody ConcertDTO concertDTO,
                                     @PathVariable("id") Long concertId) {
 
-        log.info("PUT request: /zhabalaka/admin/concert/" + concertId);
+        log.info("[PUT] request: /zhabalaka/admin/concert/{}", concertId);
         return ConcertMapper.toDTO(concertService.updateConcert(concertId, ConcertMapper.toEntity(concertDTO)));
     }
 
@@ -74,7 +76,7 @@ public class ConcertController {
     @Operation(summary = "Удалить концерт по id")
     public void deleteConcertById(@PathVariable("id") Long concertId) {
 
-        log.info("DEL request: /zhabalaka/admin/concert/" + concertId);
+        log.info("[DEL] request: /zhabalaka/admin/concert/{}", concertId);
         concertService.deleteConcertById(concertId);
     }
 
@@ -83,7 +85,7 @@ public class ConcertController {
     @Operation(summary = "Удалить все концерты")
     public void deleteAllConcert() {
 
-        log.info("DEL request: /zhabalaka/admin/concert");
+        log.info("[DEL] request: /zhabalaka/admin/concert");
         concertService.deleteAllConcert();
     }
 }

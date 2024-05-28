@@ -10,6 +10,7 @@ public interface Constants {
     interface Formatter {
         String DATE_FORMAT = "yyyy-MM-dd";
         String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm";
+        String DATE_FULL_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
     }
 
     interface Menu {

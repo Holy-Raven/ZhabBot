@@ -2,7 +2,7 @@ package ru.mkhamkha.ZhabBot.service.impl;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import ru.mkhamkha.ZhabBot.service.NewsService;
 
 import java.util.List;
 
-@Log4j
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class NewsServiceImpl implements NewsService {
@@ -40,6 +40,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
+    @Transactional
     public News updateNews(Long newsId, News news) {
 
         News updatedNews = findNewsById(newsId);
@@ -61,7 +62,6 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    @Transactional
     public void deleteAllNews() {
 
         List<News> forDel = newsRepository.findAll();
