@@ -29,12 +29,11 @@ public class ZhabBotService extends InsideBotService {
         this.properties = properties;
         this.followerService = followerService;
         this.menuService = menuService;
+        setBotCredentials(properties.getName(), properties.getToken());
     }
 
     @PostConstruct
     public void init() {
-        setBotCredentials(properties.getName(), properties.getToken());
-
         List<BotCommand> listOfCommands = new ArrayList<>();
         listOfCommands.add(new BotCommand("/start", START));
         listOfCommands.add(new BotCommand("/description", DESCRIPTION));
@@ -63,10 +62,13 @@ public class ZhabBotService extends InsideBotService {
 
             switch (message) {
                 case "/start" -> {
-                    String answer = loadMessage("main");
+                    String title = "*Привет, " + update.getMessage().getChat().getFirstName() + ", чем ЖаБЪ-bot может тебе помочь!*";
+                    String text = loadMessage("main");
+                    String answer = String.join("\n", title, text);
                     sendImageMessage("main");
                     sendMessage(answer);
-                    followerService.addFollower(update);
+
+                    menuService.startAnswer(update);
                 }
                 case "/description" -> {
                     String description = menuService.descriptionAnswer();

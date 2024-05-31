@@ -80,13 +80,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Emoji Support -->
-        <dependency>
-            <groupId>com.vdurmont</groupId>
-            <artifactId>emoji-java</artifactId>
-            <version>${emoji.version}</version>
-        </dependency>
-
         <!-- Swagger/OpenAPI -->
         <!-- Documentation: http://localhost:2020/zhabalaka/swagger-ui/index.html -->
         <!-- OAS: http://localhost:2020/zhabalaka/v3/api-docs -->
