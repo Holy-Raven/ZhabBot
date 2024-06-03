@@ -16,7 +16,10 @@ public class LogAppender extends AppenderBase<ILoggingEvent> {
     @Override
     protected void append(ILoggingEvent eventObject) {
 
-        if (eventObject.getLoggerName().startsWith("ru.mkhamkha.ZhabBot")) {
+        String loggerName = eventObject.getLoggerName();
+
+        if (eventObject.getLoggerName().startsWith("ru.mkhamkha.ZhabBot")
+                && !loggerName.equals("ru.mkhamkha.ZhabBot.ZhabBotApplication")) {
             if (logCollector == null) {
                 logCollector = SpringContext.getBean(LogCollector.class);
             }
