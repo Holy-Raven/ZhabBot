@@ -1,14 +1,19 @@
 package ru.mkhamkha.ZhabBot.util.exception;
 
-public class ErrorResponse {
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 
-    private final String error;
+@Builder
+public record ErrorResponse (
 
-    public ErrorResponse(String error) {
-        this.error = error;
-    }
+        @JsonProperty("message")
+        String errorMessage,
 
-    public String getError() {
-        return error;
-    }
+        @JsonProperty("exception")
+        String exceptionClass,
+
+        @JsonProperty("status")
+        Integer status
+
+) {
 }
