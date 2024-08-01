@@ -95,7 +95,7 @@ public class ConcertServiceImpl implements ConcertService {
     private Concert checkPlaceAndBand(Concert concert) {
 
         //если место проведения уже было в базе, то достаем его оттуда и помещаем в наш концерт
-        placeService.findByNameAndCity(concert.getPlace().getName(), concert.getPlace().getName()).ifPresent(concert::setPlace);
+        placeService.findByNameAndCity(concert.getPlace().getName(), concert.getPlace().getCity()).ifPresent(concert::setPlace);
 
         //если группа участник концерта уже была в базе, то достаем ее оттуда и помещаем в список участников нашего концерта
         List<Band> bandList = new ArrayList<>();

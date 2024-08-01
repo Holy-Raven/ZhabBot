@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.mkhamkha.ZhabBot.model.dto.BandDTO;
 import ru.mkhamkha.ZhabBot.model.entity.Band;
@@ -22,6 +23,7 @@ import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.FROM_ERROR_MESSAGE
 import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.SIZE_ERROR_MESSAGE;
 
 @Slf4j
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/bands")
@@ -78,7 +80,7 @@ public class BandController {
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.CREATED)
     @Operation(summary = "Обновить имеющуюся команду по ее id")
-    public BandDTO updateBand(@RequestBody BandDTO bandDTO,
+    public BandDTO updateBand(@Valid @RequestBody BandDTO bandDTO,
                               @PathVariable("id") Long bandId) {
 
         log.info("[PUT] request: /zhabalaka/admin/band/{}", bandId);

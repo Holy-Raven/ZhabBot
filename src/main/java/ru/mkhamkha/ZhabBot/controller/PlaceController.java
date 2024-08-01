@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.mkhamkha.ZhabBot.model.dto.PlaceDTO;
 import ru.mkhamkha.ZhabBot.model.entity.Place;
@@ -19,6 +20,7 @@ import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.FROM_ERROR_MESSAGE
 import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.SIZE_ERROR_MESSAGE;
 
 @Slf4j
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/places")
@@ -64,7 +66,7 @@ public class PlaceController {
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.CREATED)
     @Operation(summary = "Обновить имеющуюся концертную площадку по ее id")
-    public PlaceDTO updatePlace(@RequestBody PlaceDTO placeDTO,
+    public PlaceDTO updatePlace(@Validated @RequestBody PlaceDTO placeDTO,
                                 @PathVariable("id") Long placeId) {
 
         log.info("[PUT] request: /zhabalaka/admin/place/{}", placeId);

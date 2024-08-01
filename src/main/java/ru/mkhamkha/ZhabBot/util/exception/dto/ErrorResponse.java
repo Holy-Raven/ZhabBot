@@ -1,4 +1,4 @@
-package ru.mkhamkha.ZhabBot.util.exception;
+package ru.mkhamkha.ZhabBot.util.exception.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;

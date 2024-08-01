@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.mkhamkha.ZhabBot.model.dto.ConcertDTO;
 import ru.mkhamkha.ZhabBot.model.entity.Concert;
@@ -19,6 +20,7 @@ import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.FROM_ERROR_MESSAGE
 import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.SIZE_ERROR_MESSAGE;
 
 @Slf4j
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/concerts")
@@ -63,8 +65,8 @@ public class ConcertController {
 
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.CREATED)
-    @Operation(summary = "Обновить имеющтйся концерт по его id")
-    public ConcertDTO updateConcert(@RequestBody ConcertDTO concertDTO,
+    @Operation(summary = "Обновить имеющийся концерт по его id")
+    public ConcertDTO updateConcert(@Valid @RequestBody ConcertDTO concertDTO,
                                     @PathVariable("id") Long concertId) {
 
         log.info("[PUT] request: /zhabalaka/admin/concert/{}", concertId);
