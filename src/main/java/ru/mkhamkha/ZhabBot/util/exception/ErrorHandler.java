@@ -37,6 +37,7 @@ public class ErrorHandler {
     public ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundException e) {
         ErrorResponse response = ErrorResponse.builder()
                 .errorMessage(e.getMessage())
+                .exceptionClass(e.getClass().toString())
                 .status(HttpStatus.NOT_FOUND.value())
                 .build();
 
@@ -48,6 +49,7 @@ public class ErrorHandler {
     public ResponseEntity<ErrorResponse> handleValidationException(ValidationException e) {
         ErrorResponse response = ErrorResponse.builder()
                 .errorMessage(e.getMessage())
+                .exceptionClass(e.getClass().toString())
                 .status(HttpStatus.BAD_REQUEST.value())
                 .build();
 
@@ -59,6 +61,7 @@ public class ErrorHandler {
     public ResponseEntity<ErrorResponse> handleEmailExistException(ConflictException e) {
         ErrorResponse response = ErrorResponse.builder()
                 .errorMessage(e.getMessage())
+                .exceptionClass(e.getClass().toString())
                 .status(HttpStatus.CONFLICT.value())
                 .build();
 
@@ -75,6 +78,7 @@ public class ErrorHandler {
 
         ErrorResponseValid response = ErrorResponseValid.builder()
                 .errorMessage(mapErrors).status(HttpStatus.BAD_REQUEST.value())
+                .exceptionClass(e.getClass().toString())
                 .build();
 
         log.error("ERROR: {}", response.toString());
@@ -92,6 +96,7 @@ public class ErrorHandler {
 
         ErrorResponseValid response = ErrorResponseValid.builder()
                 .errorMessage(mapErrors).status(HttpStatus.BAD_REQUEST.value())
+                .exceptionClass(e.getClass().toString())
                 .build();
 
         log.error("ERROR: {}", response.toString());
