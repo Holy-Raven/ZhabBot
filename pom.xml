@@ -21,7 +21,6 @@
         <telegram.version>6.9.0</telegram.version>
         <lombok.version>1.18.28</lombok.version>
         <swagger.version>2.2.0</swagger.version>
-        <emoji.version>5.1.1</emoji.version>
     </properties>
 
     <dependencies>
@@ -78,13 +77,6 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
-        </dependency>
-
-        <!-- Emoji Support -->
-        <dependency>
-            <groupId>com.vdurmont</groupId>
-            <artifactId>emoji-java</artifactId>
-            <version>${emoji.version}</version>
         </dependency>
 
         <!-- Swagger/OpenAPI -->

@@ -32,8 +32,8 @@ public class AnswerNewsService {
 
         StringBuilder builder = new StringBuilder();
 
-        builder.append(news.getTitle());
-        builder.append(" - (").append(news.getTime().format(DateTimeFormatter.ofPattern(DATE_FORMAT))).append(")");
+        builder.append("*").append(news.getTitle()).append("*");
+        builder.append(" - _(").append(news.getTime().format(DateTimeFormatter.ofPattern(DATE_FORMAT))).append(")_");
         builder.append("\n\n");
         builder.append(news.getMessage());
         builder.append("\n");

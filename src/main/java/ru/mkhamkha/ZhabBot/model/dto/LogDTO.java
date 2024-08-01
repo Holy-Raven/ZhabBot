@@ -21,11 +21,11 @@ public class LogDTO {
     @JsonProperty(value = "id", access = JsonProperty.Access.READ_ONLY)
     private Long id;
 
-    @Size(max = 5)
+    @Size(max = 5, message = "Максимальная длина level не должна быть более 5 симворлов.")
     @JsonProperty(value = "level")
     private String level;
 
-    @Size(max = 250)
+    @Size(max = 250, message = "Максимальная длина logger не должна быть более 250 симворлов.")
     @JsonProperty(value = "logger")
     private String logger;
 

@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.mkhamkha.ZhabBot.model.entity.News;
 import ru.mkhamkha.ZhabBot.model.dto.NewsDTO;
@@ -19,6 +20,7 @@ import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.FROM_ERROR_MESSAGE
 import static ru.mkhamkha.ZhabBot.util.Constants.ErrorMessage.SIZE_ERROR_MESSAGE;
 
 @Slf4j
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/news")
@@ -64,7 +66,7 @@ public class NewsController {
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.CREATED)
     @Operation(summary = "Обновить имеющуюся новость по ее id")
-    public NewsDTO updateNews(@RequestBody NewsDTO newsDTO,
+    public NewsDTO updateNews(@Valid @RequestBody NewsDTO newsDTO,
                               @PathVariable("id") Long newsId) {
 
         log.info("[PUT] request: /zhabalaka/admin/news/{}", newsId);

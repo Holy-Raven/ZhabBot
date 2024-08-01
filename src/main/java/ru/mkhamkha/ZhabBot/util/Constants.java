@@ -18,9 +18,9 @@ public interface Constants {
         String DESCRIPTION = "Кто такой этот ваш ЖаБЪ?!";
         String NEWS = "Свежие новости с болот.";
         String CONCERTS = "Ближайшие концерты.";
+        String MARKET = "Болотная барахолка";
         String MY_DATA = "Что ЖаБЪ о тебе знает.";
         String DELETE_DATA = "Попрощаться с ЖаБЪ-ом";
         String HELP = "Нужна помощь?";
-        String MARKET = "Болотная барахолка";
     }
 }

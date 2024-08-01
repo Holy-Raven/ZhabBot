@@ -1,10 +1,11 @@
 package ru.mkhamkha.ZhabBot.service.buisness;
 
-import com.vdurmont.emoji.EmojiParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.mkhamkha.ZhabBot.model.entity.Concert;
 import ru.mkhamkha.ZhabBot.model.entity.News;
+import ru.mkhamkha.ZhabBot.service.FollowerService;
 
 import java.util.List;
 
@@ -14,11 +15,11 @@ public class MenuService {
 
     private final AnswerNewsService answerNewsService;
     private final AnswerConcertService answerConcertService;
+    private final FollowerService followerService;
 
-    public String startAnswer(String name) {
 
-        //кодировка смайлов взята с https://emojisup.org
-        return EmojiParser.parseToUnicode("Привет, " + name + " ЖаБЪ тебя скушает! Но не сегодня, живи пока что!" + " :blush:");
+    public void startAnswer(Update update) {
+        followerService.addFollower(update);
     }
 
     public String newsAnswer(Integer top) {

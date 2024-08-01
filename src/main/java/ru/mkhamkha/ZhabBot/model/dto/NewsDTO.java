@@ -22,11 +22,11 @@ public class NewsDTO {
     @JsonProperty(value = "id", access = JsonProperty.Access.READ_ONLY)
     Long id;
 
-    @Size(max = 250)
+    @Size(max = 250, message = "Максимальная длина title не должна быть более 250 симворлов.")
     @JsonProperty(value = "title")
     String title;
 
-    @Size(max = 2000)
+    @Size(max = 2000, message = "Максимальная длина message не должна быть более 2000 симворлов.")
     @JsonProperty(value = "message")
     String message;
 
