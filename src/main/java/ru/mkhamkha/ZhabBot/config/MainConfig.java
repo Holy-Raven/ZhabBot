@@ -36,11 +36,11 @@ public class MainConfig {
         sender.setUsername(mailProperty.getUsername());
         sender.setPassword(mailProperty.getPassword());
 
-        Properties props = new Properties(4);
-        props.setProperty("mail.transport.protocol", "smtps");
+        Properties props = new Properties();
+        props.setProperty("mail.transport.protocol", "smtp");
         props.setProperty("mail.smtp.auth", "true");
         props.setProperty("mail.smtp.starttls.enable", "true");
-        props.setProperty("mail.smtp.ssl.trust", "*");
+        props.setProperty("mail.smtp.ssl.trust", "smtp.gmail.com");
         sender.setJavaMailProperties(props);
 
         return sender;

@@ -28,7 +28,6 @@ public class SendMessage {
                 new MimeMessageHelper(mimeMessage, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
 
         mimeMessageHelper.setTo(InternetAddress.parse(mailProperty.getTarget()));
-        mimeMessageHelper.setFrom(mailProperty.getAddress());
         mimeMessageHelper.setSubject(sendMailData.getSubject());
         mimeMessageHelper.setText(sendMailData.getHtmlBody(), true);
 

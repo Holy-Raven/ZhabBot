@@ -16,12 +16,11 @@ spring:
     username: zhab
     password: zhab
   mail:
+    host: smtp.gmail.com
     port: 587
-    protocol: smtps
-    host: smtp.yandex.ru
-    username: swampfolkband@yandex.ru
-    password: ursqsorprsyihpll
-    address: zhab@swamp.ru
+    protocol: smtp
+    username: zhabalaka@gmail.com
+    password: rtajpfxeekbxnjht
     target: mkhamkha@yandex.ru
 
 springdoc:

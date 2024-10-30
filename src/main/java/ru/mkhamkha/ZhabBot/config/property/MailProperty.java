@@ -13,6 +13,5 @@ public class MailProperty {
     private String host;
     private String username;
     private String password;
-    private String address;
     private String target;
 }
