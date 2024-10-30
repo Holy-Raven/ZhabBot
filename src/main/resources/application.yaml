@@ -15,6 +15,14 @@ spring:
     url: jdbc:postgresql://localhost:5432/zhab-bot
     username: zhab
     password: zhab
+  mail:
+    port: 587
+    protocol: smtps
+    host: smtp.yandex.ru
+    username: swampfolkband@yandex.ru
+    password: ursqsorprsyihpll
+    address: zhab@swamp.ru
+    target: mkhamkha@yandex.ru
 
 springdoc:
   api-docs:

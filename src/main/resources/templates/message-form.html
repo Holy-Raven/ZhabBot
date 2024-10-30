@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>MES-RPPC stat report</title>
+</head>
+<style>
+    .content {
+        margin: 10px 10px;
+        width: 1000px;
+    }
+
+    .data {
+        width: 100%;
+        min-width: 100%;
+
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+
+    .data th {
+        background-color: #cccccc;
+        border: solid 1px white;
+
+        padding: 5px;
+        text-align: left;
+    }
+
+    .data td {
+        padding: 5px 10px;
+        border-bottom: solid 1px #333333;
+
+        vertical-align: top;
+    }
+
+</style>
+<body>
+<div class="content">
+
+    <h3 th:text="${date}"></h3>
+
+    <table class="data">
+
+        <thead>
+        <tr>
+            <th>Сообщение</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${message}"></td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+</body>
+</html>
